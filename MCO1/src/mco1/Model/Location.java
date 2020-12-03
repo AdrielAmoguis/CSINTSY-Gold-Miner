@@ -20,10 +20,18 @@ public class Location {
         this.col = col;
     }
 
+    /**
+     * Returns the row of this Location.
+     * @return the row of this Location.
+     */
     public int getRow(){
         return row;
     }
 
+    /**
+     * Returns the column of this Location.
+     * @return the column of this Location.
+     */
     public int getCol(){
         return col;
     }
