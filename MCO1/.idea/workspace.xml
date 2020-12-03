@@ -20,16 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/mco1/View/MainMenu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MCO1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MCO1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mco1/Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mco1/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mco1/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mco1/sample.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,9 +114,8 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="F:/Projects/Coding/Java 3rd Party Libraries/JavaFX Runtime/lib" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../JAVAFX/lib" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
   </component>
@@ -156,7 +148,7 @@
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="mco1.Main" />
       <module name="MCO1" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;F:\Projects\Coding\Java 3rd Party Libraries\JavaFX Runtime\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\JavaFX\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="mco1.*" />
@@ -241,49 +233,53 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="440" y="99" key="#Project_Structure" timestamp="1606994071796">
+    <state x="444" y="117" width="1040" height="851" key="#Project_Structure" timestamp="1607001043749">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="440" y="99" key="#Project_Structure/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1606994071796" />
-    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606994302688">
+    <state x="444" y="117" width="1040" height="851" key="#Project_Structure/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607001043749" />
+    <state x="567" y="140" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607001054011">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1606994302688" />
+    <state x="567" y="140" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607001054011" />
+    <state x="790" y="235" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1607000888106">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="790" y="235" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607000888106" />
     <state x="690" y="271" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606994140118">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="690" y="271" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1606994140118" />
-    <state x="666" y="266" key="FileChooserDialogImpl" timestamp="1606994066354">
+    <state x="666" y="266" key="FileChooserDialogImpl" timestamp="1607000899761">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="666" y="266" key="FileChooserDialogImpl/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1606994066354" />
-    <state width="1877" height="285" key="GridCell.Tab.0.bottom" timestamp="1606994305426">
+    <state x="666" y="266" key="FileChooserDialogImpl/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607000899761" />
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom" timestamp="1607000920080">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1606959860792" />
-    <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1606994305426" />
-    <state width="1877" height="285" key="GridCell.Tab.0.center" timestamp="1606994305425">
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607000920080" />
+    <state width="1877" height="285" key="GridCell.Tab.0.center" timestamp="1607000920080">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1606959860791" />
-    <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1606994305425" />
-    <state width="1877" height="285" key="GridCell.Tab.0.left" timestamp="1606994305424">
+    <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607000920080" />
+    <state width="1877" height="285" key="GridCell.Tab.0.left" timestamp="1607000920080">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1606959860791" />
-    <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1606994305424" />
-    <state width="1877" height="285" key="GridCell.Tab.0.right" timestamp="1606994305425">
+    <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607000920080" />
+    <state width="1877" height="285" key="GridCell.Tab.0.right" timestamp="1607000920080">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1606959860791" />
-    <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1606994305425" />
+    <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607000920080" />
     <state x="389" y="0" width="587" height="728" key="find.popup" timestamp="1606974828847">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="389" y="0" width="587" height="728" key="find.popup/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1606974828847" />
-    <state x="616" y="243" key="run.anything.popup" timestamp="1606994202427">
+    <state x="616" y="243" key="run.anything.popup" timestamp="1607001013236">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="616" y="243" key="run.anything.popup/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1606994202427" />
+    <state x="616" y="243" key="run.anything.popup/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607001013236" />
   </component>
 </project>

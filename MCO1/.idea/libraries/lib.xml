@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="lib">
     <CLASSES>
-      <root url="file://F:/Projects/Coding/Java 3rd Party Libraries/JavaFX Runtime/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../JavaFX/lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="file://F:/Projects/Coding/Java 3rd Party Libraries/JavaFX Runtime/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../JavaFX/lib" />
     </SOURCES>
-    <jarDirectory url="file://F:/Projects/Coding/Java 3rd Party Libraries/JavaFX Runtime/lib" recursive="false" />
-    <jarDirectory url="file://F:/Projects/Coding/Java 3rd Party Libraries/JavaFX Runtime/lib" recursive="false" type="SOURCES" />
+    <jarDirectory url="file://$PROJECT_DIR$/../../../../../JavaFX/lib" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../../../../../JavaFX/lib" recursive="false" type="SOURCES" />
   </library>
 </component>
