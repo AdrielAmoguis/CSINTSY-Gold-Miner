@@ -11,7 +11,9 @@ public class Location {
     private int col;
 
     /**
-     * Initializes the current row and position of location
+     * Creates a Location at [row,col]
+     * @param row row of Location
+     * @param col column of Location
      */
     public Location(int row, int col){
         this.row = row;

@@ -2,10 +2,9 @@ package mco1.Model;
 
 public class Empty extends Location{
     /**
-     * Initializes the current row and position of location
-     *
-     * @param row
-     * @param col
+     * Creates an Empty space at [row, col]
+     * @param row row of Empty space
+     * @param col column of Empty space
      */
     public Empty(int row, int col) {
         super(row, col);
