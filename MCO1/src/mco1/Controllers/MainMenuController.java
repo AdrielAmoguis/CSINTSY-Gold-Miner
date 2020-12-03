@@ -1,13 +1,14 @@
 package mco1.Controllers;
 
-import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.event.*;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 public class MainMenuController implements EventHandler<Event>, ChangeListener<String>
 {
@@ -25,6 +26,9 @@ public class MainMenuController implements EventHandler<Event>, ChangeListener<S
         // Create Map Button should initially be false
         createMapButton.setDisable(true);
 
+        // Add Button's OnAction Event
+        createMapButton.setOnAction(this::handle);
+
         // Add ChangeListener to TextBox
         sizeTextBox.textProperty().addListener(this::changed);
     }
@@ -40,7 +44,33 @@ public class MainMenuController implements EventHandler<Event>, ChangeListener<S
     // ActionEvent Listener
     private void handle(ActionEvent ev)
     {
+        if(((Button)ev.getSource()).getId().equals(createMapButton.getId()))
+        {
+            // Open the Main Window
+            Stage primaryStage = ((Stage) ((Button) ev.getSource()).getScene().getWindow());
+            Parent root = null;
 
+            // Custom Controller
+            MainMapController controller = new MainMapController(Integer.parseInt(sizeTextBox.getText()));
+
+            try
+            {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/mco1/View/MainMap.fxml"));
+                loader.setController(controller);
+                root = loader.load();
+            }
+
+            catch(Exception e)
+            {
+                e.printStackTrace();
+                return;
+            }
+
+            primaryStage.setTitle("Gold Miner - Main Window");
+            primaryStage.setResizable(false);
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+        }
     }
 
     // ChangeListener
