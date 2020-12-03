@@ -9,8 +9,8 @@ public class Miner extends Location{
 
     /**
      * Creates a Miner at [row,col]. Should be instantiated at [0,0]
-     * @param row row where miner is at
-     * @param col column where miner is at
+     * @param row row of Miner
+     * @param col column of Miner
      */
     public Miner(int row, int col) {
         super(row, col);
