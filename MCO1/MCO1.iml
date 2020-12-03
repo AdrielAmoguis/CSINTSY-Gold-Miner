@@ -5,6 +5,21 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="14" jdkType="JavaSDK" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://F:/Projects/Coding/Java 3rd Party Libraries/JavaFX Runtime/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://F:/Projects/Coding/Java 3rd Party Libraries/JavaFX Runtime/lib" />
+        </SOURCES>
+        <jarDirectory url="file://F:/Projects/Coding/Java 3rd Party Libraries/JavaFX Runtime/lib" recursive="false" />
+        <jarDirectory url="file://F:/Projects/Coding/Java 3rd Party Libraries/JavaFX Runtime/lib" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
