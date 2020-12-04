@@ -57,7 +57,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../JavaFX/lib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -72,6 +72,7 @@
       </method>
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -95,15 +96,17 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="390" y="78" key="#Project_Structure" timestamp="1607074101876">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="390" y="78" key="#Project_Structure/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607074101876" />
-    <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607074241349">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="274" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607096250265">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="274" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1607096250265" />
     <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607074241349" />
     <state x="666" y="266" key="FileChooserDialogImpl" timestamp="1607074091582">
       <screen x="0" y="0" width="1920" height="1050" />

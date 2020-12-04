@@ -16,6 +16,9 @@ public class Board {
      * Represents the Golden Square.
      */
     private GoldenSquare goal;
+    private int nRotates;
+    private int nScans;
+    private int nMoves;
 
     /**
      * Creates an nxn board with Empty locations.
@@ -49,6 +52,30 @@ public class Board {
      */
     public Miner getMinerAgent() {
         return minerAgent;
+    }
+
+    /**
+     * Returns the number of rotations.
+     * @return the number of rotations
+     */
+    public int getnRotates(){
+        return nRotates;
+    }
+
+    /**
+     * Returns the number of scans.
+     * @return the number of scans.
+     */
+    public int getnScans() {
+        return nScans;
+    }
+
+    /**
+     * Returns the number of moves done.
+     * @return the number of moves done.
+     */
+    public int getnMoves() {
+        return nMoves;
     }
 
     /**
@@ -130,10 +157,16 @@ public class Board {
         }
     }
 
+    /**
+     * Returns the nearest Location in front of Miner (not including Empty).
+     * Also increments nScans counter.
+     * @return Nearest location in front of Miner. Returns null if none
+     */
     public Location scan(){
          int minerRow = minerAgent.getRow();
          int minerCol = minerAgent.getCol();
          List<Location> scannedLocations = new ArrayList<>();
+         nScans += 1;
          switch(minerAgent.getFront()){
              // Facing right -> scan [Miner's Column, Row's Last Column]
              case 0:
@@ -162,7 +195,6 @@ public class Board {
                  System.out.println("[Board] Scanned Location: " + scannedLocations.get(i).getClass().getName());
                  return scannedLocations.get(i);
              }
-
          }
          // if no Locations scanned, return null
          System.out.println("[Board] No scanned Locations");
@@ -170,12 +202,14 @@ public class Board {
     }
 
     /**
-     * Moves the miner one position to his front.
-     * First checks if the move is valid.
+     * Moves the miner one position to his front. Initially checks if move is valid.
+     * Also increments nMoves counter.
      */
     public void moveMiner(){
-        if (validMove())
+        if (validMove()){
             minerAgent.move();
+            nMoves += 1;
+        }
         else{
             System.out.println("[Board Class] Invalid move.");
         }
@@ -183,10 +217,23 @@ public class Board {
     }
 
     /**
-     * Resets the position of the miner to upper left corner of grid.
+     * Rotates the miner by 90 degrees.
+     * Also increments nRotates counter.
      */
-    public void resetMiner(){
+    public void rotateMiner(){
+        minerAgent.rotate();
+        nRotates += 1;
+    }
+
+    /**
+     * Resets the position of the miner to upper left corner of grid.
+     * Also resets the counters.
+     */
+    public void reset(){
         minerAgent.reset();
+        nRotates = 0;
+        nScans = 0;
+        nMoves = 0;
     }
 
     /**
