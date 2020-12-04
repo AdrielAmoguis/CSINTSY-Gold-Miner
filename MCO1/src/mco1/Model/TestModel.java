@@ -12,7 +12,10 @@ public class TestModel {
         board.placeGold(3,6);
         board.placeBeacon(3,3);
         board.displayMap();
+<<<<<<< HEAD
         board.getMinerAgent().displayPosition();
+=======
+>>>>>>> b53ed18076dea8eca416dd44bda85401bc68af1c
         board.getMinerAgent().rotate();
         board.scan(); // Downward scan
         board.getMinerAgent().rotate();

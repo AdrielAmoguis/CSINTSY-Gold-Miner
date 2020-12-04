@@ -16,9 +16,12 @@ public class Board {
      * Represents the Golden Square.
      */
     private GoldenSquare goal;
+<<<<<<< HEAD
     private int nRotates;
     private int nScans;
     private int nMoves;
+=======
+>>>>>>> b53ed18076dea8eca416dd44bda85401bc68af1c
 
     /**
      * Creates an nxn board with Empty locations.
@@ -36,9 +39,12 @@ public class Board {
         }
         // Initialize miner and place at upper-left corner of grid
         minerAgent = new Miner(0,0);
+<<<<<<< HEAD
         nRotates = 0;
         nScans = 0;
         nMoves = 0;
+=======
+>>>>>>> b53ed18076dea8eca416dd44bda85401bc68af1c
     }
 
     /**
@@ -58,6 +64,7 @@ public class Board {
     }
 
     /**
+<<<<<<< HEAD
      * Returns the current number of moves.
      * @return current number of moves.
      */
@@ -82,6 +89,8 @@ public class Board {
     }
 
     /**
+=======
+>>>>>>> b53ed18076dea8eca416dd44bda85401bc68af1c
      * Replaces the Location at [row - 1,col - 1] with GoldenSquare
      * @param row row of Location (in normal notation)
      * @param col column of Location (in normal notation)
@@ -209,15 +218,20 @@ public class Board {
         else{
             System.out.println("[Board Class] Invalid move.");
         }
+<<<<<<< HEAD
     }
 
     public void rotateMiner(){
         minerAgent.rotate();
         nRotates += 1;
+=======
+
+>>>>>>> b53ed18076dea8eca416dd44bda85401bc68af1c
     }
 
     /**
      * Resets the position of the miner to upper left corner of grid.
+<<<<<<< HEAD
      * Resets the counters for dashboard.
      */
     public void reset(){
@@ -225,6 +239,11 @@ public class Board {
         nRotates = 0;
         nScans = 0;
         nMoves = 0;
+=======
+     */
+    public void resetMiner(){
+        minerAgent.reset();
+>>>>>>> b53ed18076dea8eca416dd44bda85401bc68af1c
     }
 
     /**
