@@ -9,6 +9,16 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
+<<<<<<< HEAD
+          <root url="file://C:/JavaFX/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://C:/JavaFX/lib" />
+        </SOURCES>
+        <jarDirectory url="file://C:/JavaFX/lib" recursive="false" />
+        <jarDirectory url="file://C:/JavaFX/lib" recursive="false" type="SOURCES" />
+=======
           <root url="file://F:/Projects/Coding/Java 3rd Party Libraries/JavaFX Runtime/lib" />
         </CLASSES>
         <JAVADOC />
@@ -17,6 +27,7 @@
         </SOURCES>
         <jarDirectory url="file://F:/Projects/Coding/Java 3rd Party Libraries/JavaFX Runtime/lib" recursive="false" />
         <jarDirectory url="file://F:/Projects/Coding/Java 3rd Party Libraries/JavaFX Runtime/lib" recursive="false" type="SOURCES" />
+>>>>>>> d0bce080fa77abd90492ea7cc0176e3fe9cb9d0f
       </library>
     </orderEntry>
     <orderEntry type="library" name="lib" level="project" />
