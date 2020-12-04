@@ -9,14 +9,14 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://C:/JAVAFX/lib" />
+          <root url="file://C:/JavaFX/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://C:/JAVAFX/lib" />
+          <root url="file://C:/JavaFX/lib" />
         </SOURCES>
-        <jarDirectory url="file://C:/JAVAFX/lib" recursive="false" />
-        <jarDirectory url="file://C:/JAVAFX/lib" recursive="false" type="SOURCES" />
+        <jarDirectory url="file://C:/JavaFX/lib" recursive="false" />
+        <jarDirectory url="file://C:/JavaFX/lib" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
     <orderEntry type="sourceFolder" forTests="false" />

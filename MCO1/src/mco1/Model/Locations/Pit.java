@@ -1,4 +1,4 @@
-package mco1.Model;
+package mco1.Model.Locations;
 
 public class Pit extends Location{
     /**

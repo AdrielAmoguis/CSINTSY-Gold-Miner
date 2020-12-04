@@ -1,14 +1,14 @@
-package mco1.Model;
+package mco1.Model.Locations;
 
 public class Location {
     /**
      * Represents at which row the location is at
      */
-    private int row;
+    protected int row;
     /**
      * Represents at which column the location is at
      */
-    private int col;
+    protected int col;
 
     /**
      * Creates a Location at [row,col]

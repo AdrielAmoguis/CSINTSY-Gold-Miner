@@ -1,4 +1,6 @@
 package mco1.Model;
+import mco1.Model.Locations.*;
+
 import java.util.*;
 
 public class Board {
@@ -34,11 +36,19 @@ public class Board {
     }
 
     /**
-     *  Returns the dimension of board.
-     *  @return the dimension of board
+     *  Returns the dimension of the map.
+     *  @return the dimension of the map
      */
-    public int getBoardSize(){
+    public int getMapSize(){
         return map.size();
+    }
+
+    /**
+     * Returns the Miner to access its methods.
+     * @return the Miner
+     */
+    public Miner getMinerAgent() {
+        return minerAgent;
     }
 
     /**
@@ -106,6 +116,80 @@ public class Board {
     }
 
     /**
+     * Resets the square at [row - 1, col - 1] as Empty.
+     * @param row row of Location (in normal notation)
+     * @param col column of Location (in normal notation)
+     */
+    public void resetSquare(int row, int col){
+        if (validPosition(row, col)){
+            row -= 1;
+            col -= 1;
+            // if square is not already Empty, set as Empty
+            if (!(map.get(row).get(col) instanceof Empty))
+                map.get(row).set(col, new Empty(row, col));
+        }
+    }
+
+    public Location scan(){
+         int minerRow = minerAgent.getRow();
+         int minerCol = minerAgent.getCol();
+         List<Location> scannedLocations = new ArrayList<>();
+         switch(minerAgent.getFront()){
+             // Facing right -> scan [Miner's Column, Row's Last Column]
+             case 0:
+                 scannedLocations = map.get(minerRow).subList(minerCol, getMapSize());
+                 break;
+             // Facing left -> scan [Row's First Column, Miner's Column]
+             case 180:
+                 scannedLocations = map.get(minerRow).subList(0, minerCol);
+                 // reverse the orientation since we want to start scan from Miner's column
+                 Collections.reverse(scannedLocations);
+                 break;
+             // Facing up -> scan [Miner's Column, Column's First Row]
+             case 90:
+                 for (int row = minerRow; row > 0; row--)
+                     scannedLocations.add(map.get(row).get(minerCol));
+                 break;
+             // Facing down -> scan [Miner's Column, Column's Last Row]
+             case 270:
+                 for (int row = minerRow; row < getMapSize(); row++)
+                     scannedLocations.add(map.get(row).get(minerCol));
+                 break;
+         }
+         for (int i = 0; i < scannedLocations.size(); i++){
+             // returns the first Location that is not Empty
+             if (!(scannedLocations.get(i) instanceof Empty)){
+                 System.out.println("[Board] Scanned Location: " + scannedLocations.get(i).getClass().getName());
+                 return scannedLocations.get(i);
+             }
+
+         }
+         // if no Locations scanned, return null
+         System.out.println("[Board] No scanned Locations");
+         return null;
+    }
+
+    /**
+     * Moves the miner one position to his front.
+     * First checks if the move is valid.
+     */
+    public void moveMiner(){
+        if (validMove())
+            minerAgent.move();
+        else{
+            System.out.println("[Board Class] Invalid move.");
+        }
+
+    }
+
+    /**
+     * Resets the position of the miner to upper left corner of grid.
+     */
+    public void resetMiner(){
+        minerAgent.reset();
+    }
+
+    /**
      * Returns true if the row & column input is valid.
      * Input is valid when: (1) Row & Column is within range of size of map IN NORMAL NOTATION [1, size]
      * @param row row of Location to be placed
@@ -113,12 +197,39 @@ public class Board {
      * @return true if input is valid, false if otherwise
      */
     private boolean validPosition(int row, int col){
-        return (row >= 1 && row <= getBoardSize()) && (col >= 1 && col <= getBoardSize());
+        return (row >= 1 && row <= getMapSize()) && (col >= 1 && col <= getMapSize());
+    }
+
+    /**
+     * Checks the Miner's current direction and position.
+     * Returns true if the Miner does not exit map after moving relative to front and position.
+     * @return true if the Miner does not exit map after moving.
+     */
+    private boolean validMove(){
+        int minerDirection = minerAgent.getFront();
+        boolean validMove = true;
+        // If Miner is facing right and is at right edge of map
+        if (minerDirection == 0 && minerAgent.getCol() == getMapSize() - 1)
+            validMove = false;
+
+        // If Miner is facing left and is at left edge of map
+        else if (minerDirection == 180 && minerAgent.getCol() == 0)
+            validMove = false;
+
+        // If Miner is facing up and is at top edge of map
+        else if (minerDirection == 90 && minerAgent.getRow() == 0)
+            validMove= false;
+
+        // If Miner is facing down
+        else if (minerDirection == 270 && minerAgent.getRow() == getMapSize() - 1)
+            validMove = false;
+
+        return validMove;
     }
 
     public void displayMap(){
-        for (int row = 0; row < getBoardSize(); row++){
-            for (int col = 0; col < getBoardSize(); col++){
+        for (int row = 0; row < getMapSize(); row++){
+            for (int col = 0; col < getMapSize(); col++){
                 char ch = 'E';
                 Location current = map.get(row).get(col);
                 if (current instanceof Pit)
@@ -131,6 +242,7 @@ public class Board {
             }
             System.out.println();
         }
+        System.out.println();
     }
 }
 

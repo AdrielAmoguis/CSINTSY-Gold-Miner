@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-<<<<<<< HEAD
     <list default="true" id="cbb073c1-a27d-4ba1-953f-570951b79112" name="Default Changelist" comment="" />
-=======
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCO1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MCO1.iml" afterDir="false" />
-    </list>
->>>>>>> eccafd63b60e6a9bc7f883ff6303869ff4b78292
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,30 +14,15 @@
       </list>
     </option>
   </component>
+  <component name="ProjectId" id="1lBFEgEwGy4ddT3ATKh4SX9nVvM" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
-<<<<<<< HEAD
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../../../../JavaFX/lib" />
     <property name="project.structure.last.edited" value="Libraries" />
-=======
-    <property name="GoToClass.includeLibraries" value="false" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="OverrideImplement.combined" value="false" />
-<<<<<<< HEAD
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-=======
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../JAVAFX/lib" />
->>>>>>> eccafd63b60e6a9bc7f883ff6303869ff4b78292
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -54,79 +31,55 @@
       <option name="MAIN_CLASS_NAME" value="mco1.Model.TestModel" />
       <module name="MCO1" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\JavaFX\lib&quot; --add-modules javafx.controls,javafx.fxml" />
-<<<<<<< HEAD
-=======
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="mco1.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Application" factoryName="Application">
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="TEST_OBJECT" value="class" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="TestNG">
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <properties />
-      <listeners />
->>>>>>> eccafd63b60e6a9bc7f883ff6303869ff4b78292
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cbb073c1-a27d-4ba1-953f-570951b79112" name="Default Changelist" comment="" />
+      <created>1607062528242</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1607062528242</updated>
+    </task>
     <servers />
   </component>
   <component name="WindowStateProjectService">
-<<<<<<< HEAD
     <state x="203" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607006443407">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="203" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1607006443407" />
+    <state x="466" y="258" width="433" height="218" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1607065435315">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="466" y="258" width="433" height="218" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1607065435315" />
     <state x="389" y="105" key="FileChooserDialogImpl" timestamp="1607004194472">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="389" y="105" key="FileChooserDialogImpl/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1607004194472" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1607008581095">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1237" height="263" key="GridCell.Tab.0.bottom" timestamp="1607073453754">
+      <screen x="-1280" y="2" width="1280" height="984" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1607008581095" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1607008581094">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1237" height="263" key="GridCell.Tab.0.bottom/0.0.1366.728/-1280.2.1280.984@-1280.2.1280.984" timestamp="1607073453754" />
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1607071263040" />
+    <state width="1237" height="263" key="GridCell.Tab.0.center" timestamp="1607073453754">
+      <screen x="-1280" y="2" width="1280" height="984" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1607008581094" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1607008581094">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1237" height="263" key="GridCell.Tab.0.center/0.0.1366.728/-1280.2.1280.984@-1280.2.1280.984" timestamp="1607073453754" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1607071263040" />
+    <state width="1237" height="263" key="GridCell.Tab.0.left" timestamp="1607073453754">
+      <screen x="-1280" y="2" width="1280" height="984" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1607008581094" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1607008581095">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1237" height="263" key="GridCell.Tab.0.left/0.0.1366.728/-1280.2.1280.984@-1280.2.1280.984" timestamp="1607073453754" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1607071263040" />
+    <state width="1237" height="263" key="GridCell.Tab.0.right" timestamp="1607073453754">
+      <screen x="-1280" y="2" width="1280" height="984" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1607008581095" />
+    <state width="1237" height="263" key="GridCell.Tab.0.right/0.0.1366.728/-1280.2.1280.984@-1280.2.1280.984" timestamp="1607073453754" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1607071263040" />
     <state x="163" y="0" key="SettingsEditor" timestamp="1607004144793">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -135,55 +88,5 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="65" y="24" key="new project wizard/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1607004209437" />
-=======
-    <state x="444" y="117" width="1040" height="851" key="#Project_Structure" timestamp="1607001043749">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="444" y="117" width="1040" height="851" key="#Project_Structure/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607001043749" />
-    <state x="567" y="140" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607001054011">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="567" y="140" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607001054011" />
-    <state x="790" y="235" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1607000888106">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="790" y="235" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607000888106" />
-    <state x="690" y="271" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606994140118">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="690" y="271" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1606994140118" />
-    <state x="666" y="266" key="FileChooserDialogImpl" timestamp="1607000899761">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="666" y="266" key="FileChooserDialogImpl/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607000899761" />
-    <state width="1877" height="285" key="GridCell.Tab.0.bottom" timestamp="1607000920080">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1606959860792" />
-    <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607000920080" />
-    <state width="1877" height="285" key="GridCell.Tab.0.center" timestamp="1607000920080">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1606959860791" />
-    <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607000920080" />
-    <state width="1877" height="285" key="GridCell.Tab.0.left" timestamp="1607000920080">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1606959860791" />
-    <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607000920080" />
-    <state width="1877" height="285" key="GridCell.Tab.0.right" timestamp="1607000920080">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1606959860791" />
-    <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607000920080" />
-    <state x="389" y="0" width="587" height="728" key="find.popup" timestamp="1606974828847">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="389" y="0" width="587" height="728" key="find.popup/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1606974828847" />
-    <state x="616" y="243" key="run.anything.popup" timestamp="1607001013236">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="616" y="243" key="run.anything.popup/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607001013236" />
->>>>>>> eccafd63b60e6a9bc7f883ff6303869ff4b78292
   </component>
 </project>
