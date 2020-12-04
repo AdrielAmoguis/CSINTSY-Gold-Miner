@@ -14,7 +14,8 @@ public class Main extends Application
     {
         Parent root = FXMLLoader.load(getClass().getResource("/mco1/View/MainMenu.fxml"));
         primaryStage.setTitle("Gold Miner");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setResizable(false);
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 
