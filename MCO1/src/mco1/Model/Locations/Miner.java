@@ -67,11 +67,8 @@ public class Miner extends Location{
      * Checks Miner's current position. Used for debugging purposes.
      */
     public void displayPosition(){
-<<<<<<< HEAD
         System.out.println("[Miner Class] Miner Current Position: [" + row + ", " + col + "] (Index notation)");
-=======
         System.out.println("[Miner Class] Miner Current Position: [" + row + ", " + col + "]");
->>>>>>> b53ed18076dea8eca416dd44bda85401bc68af1c
     }
 
 
