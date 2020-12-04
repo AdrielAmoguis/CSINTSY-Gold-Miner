@@ -8,64 +8,65 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainPane" prefHeight="875.0" prefWidth="1308.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="mainPane" prefHeight="936.0" prefWidth="1308.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Line endX="1186.0" layoutX="115.0" layoutY="777.0" startX="-100.0" />
-      <Button id="mainMapButton" fx:id="setGoldButton" layoutX="15.0" layoutY="790.0" mnemonicParsing="false" prefHeight="1.0" prefWidth="255.0" stylesheets="@styles.css" text="Set Pot of Gold">
+      <Button id="mainMapButton" fx:id="setGoldButton" layoutX="15.0" layoutY="857.0" mnemonicParsing="false" prefHeight="1.0" prefWidth="255.0" stylesheets="@styles.css" text="Set Pot of Gold">
          <font>
             <Font name="Lucida Console" size="23.0" />
          </font>
       </Button>
-      <Button fx:id="setPitButton" layoutX="281.0" layoutY="790.0" mnemonicParsing="false" prefHeight="1.0" prefWidth="150.0" text="Set Pits">
+      <Button fx:id="setPitButton" layoutX="281.0" layoutY="857.0" mnemonicParsing="false" prefHeight="1.0" prefWidth="150.0" text="Set Pits">
          <font>
             <Font name="Lucida Console" size="23.0" />
          </font>
       </Button>
-      <Button fx:id="setBeaconButton" layoutX="441.0" layoutY="790.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="187.0" text="Set Beacons">
+      <Button fx:id="setBeaconButton" layoutX="441.0" layoutY="857.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="187.0" text="Set Beacons">
          <font>
             <Font name="Lucida Console" size="23.0" />
          </font>
       </Button>
-      <CheckBox fx:id="checkGold" disable="true" layoutX="81.0" layoutY="839.0" mnemonicParsing="false" text="Pot of Gold">
+      <CheckBox fx:id="checkGold" disable="true" layoutX="81.0" layoutY="906.0" mnemonicParsing="false" text="Pot of Gold">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="checkPit" disable="true" layoutX="325.0" layoutY="836.0" mnemonicParsing="false" text="Pits">
+      <CheckBox fx:id="checkPit" disable="true" layoutX="325.0" layoutY="903.0" mnemonicParsing="false" text="Pits">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="checkBeacon" disable="true" layoutX="486.0" layoutY="836.0" mnemonicParsing="false" text="Beacons">
+      <CheckBox fx:id="checkBeacon" disable="true" layoutX="486.0" layoutY="903.0" mnemonicParsing="false" text="Beacons">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </CheckBox>
-      <Button fx:id="startSimulationButton" layoutX="925.0" layoutY="814.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="255.0" text="Start Simulation" textAlignment="CENTER" wrapText="true">
+      <Button fx:id="startSimulationButton" layoutX="925.0" layoutY="881.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="255.0" text="Start Simulation" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Lucida Console" size="23.0" />
          </font>
       </Button>
-      <CheckBox fx:id="checkSlowMode" layoutX="959.0" layoutY="785.0" mnemonicParsing="false" text="Enable Slow Mode?">
+      <CheckBox fx:id="checkSlowMode" layoutX="959.0" layoutY="852.0" mnemonicParsing="false" text="Enable Slow Mode?">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </CheckBox>
-      <ComboBox fx:id="comboAlgo" layoutX="658.0" layoutY="816.0" prefHeight="41.0" prefWidth="228.0" promptText="Choose One" />
-      <Label layoutX="654.0" layoutY="788.0" text="Choose Search Algorithm:">
+      <ComboBox fx:id="comboAlgo" layoutX="658.0" layoutY="883.0" prefHeight="41.0" prefWidth="228.0" promptText="Choose One" />
+      <Label layoutX="654.0" layoutY="855.0" text="Choose Search Algorithm:">
          <font>
             <Font name="Lucida Console" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="1197.0" layoutY="788.0" text="Actions:">
+      <Label layoutX="1197.0" layoutY="855.0" text="Actions:">
          <font>
             <Font name="Lucida Console" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="counterDisplay" layoutX="1223.0" layoutY="818.0" text="0">
+      <Label fx:id="counterDisplay" layoutX="1223.0" layoutY="885.0" text="0">
          <font>
             <Font name="Lucida Console" size="40.0" />
          </font>
       </Label>
+      <Line endX="1186.0" layoutX="115.0" layoutY="844.0" startX="-100.0" />
    </children>
 </AnchorPane>
