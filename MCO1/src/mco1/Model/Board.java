@@ -59,6 +59,14 @@ public class Board {
     }
 
     /**
+     * Returns the Location at a specific square.
+     * @return the Location.
+     */
+    public Location getSquare(int row, int col) {
+        return map.get(row-1).get(col-1);
+    }
+
+    /**
      * Returns the number of rotations.
      * @return the number of rotations
      */
@@ -123,7 +131,7 @@ public class Board {
      * @param row row of Location (in normal notation)
      * @param col column of Location (in normal notation)
      */
-    public void placeBeacon(int row, int col){
+    public boolean placeBeacon(int row, int col) {
         if (validPosition(row, col)){
             row -= 1;
             col -= 1;
@@ -149,9 +157,12 @@ public class Board {
                 catch (Exception e){
                     System.out.println(e.toString());
                     System.out.println("Initialize GoldenSquare (goal) first before placing other elements");
+                    return false;
                 }
+                return true;
             }
         }
+        return false;
     }
 
     /**

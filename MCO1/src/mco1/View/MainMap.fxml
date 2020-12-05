@@ -17,17 +17,17 @@
          </font>
       </Label>
       <Line endX="1186.0" layoutX="115.0" layoutY="777.0" startX="-100.0" />
-      <Button id="mainMapButton" fx:id="setGoldButton" layoutX="15.0" layoutY="892.0" mnemonicParsing="false" prefHeight="1.0" prefWidth="255.0" stylesheets="@styles.css" text="Set Pot of Gold">
+      <Button id="mainMapButton" fx:id="setGoldButton" layoutX="15.0" layoutY="892.0" mnemonicParsing="false" onAction="#handle" prefHeight="1.0" prefWidth="255.0" stylesheets="@styles.css" text="Set Pot of Gold">
          <font>
             <Font name="Lucida Console" size="23.0" />
          </font>
       </Button>
-      <Button fx:id="setPitButton" layoutX="281.0" layoutY="892.0" mnemonicParsing="false" prefHeight="1.0" prefWidth="150.0" text="Set Pits">
+      <Button fx:id="setPitButton" layoutX="281.0" layoutY="892.0" mnemonicParsing="false" onAction="#handle" prefHeight="1.0" prefWidth="150.0" text="Set Pits">
          <font>
             <Font name="Lucida Console" size="23.0" />
          </font>
       </Button>
-      <Button fx:id="setBeaconButton" layoutX="441.0" layoutY="892.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="187.0" text="Set Beacons">
+      <Button fx:id="setBeaconButton" layoutX="441.0" layoutY="892.0" mnemonicParsing="false" onAction="#handle" prefHeight="11.0" prefWidth="187.0" text="Set Beacons">
          <font>
             <Font name="Lucida Console" size="23.0" />
          </font>
@@ -47,7 +47,7 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </CheckBox>
-      <Button fx:id="startSimulationButton" layoutX="925.0" layoutY="916.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="255.0" text="Start Simulation" textAlignment="CENTER" wrapText="true">
+      <Button fx:id="startSimulationButton" layoutX="925.0" layoutY="916.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="255.0" text="Start Simulation" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Lucida Console" size="23.0" />
          </font>
@@ -104,6 +104,16 @@
             <Font name="Lucida Console" size="40.0" />
          </font>
       </Label>
-      <ScrollPane fx:id="mainScrollPane" layoutX="15.0" layoutY="14.0" prefHeight="751.0" prefWidth="1287.0" />
+      <ScrollPane fx:id="mainScrollPane" layoutX="15.0" layoutY="14.0" pannable="true" prefHeight="751.0" prefWidth="1287.0" />
+      <Label layoutX="818.0" layoutY="785.0" text="Current Mode:">
+         <font>
+            <Font name="Lucida Console" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="displayCurrentMode" layoutX="818.0" layoutY="818.0" text="Idle">
+         <font>
+            <Font name="Lucida Console" size="40.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

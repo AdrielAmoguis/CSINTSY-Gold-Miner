@@ -8,7 +8,7 @@ import javafx.event.*;
 import javafx.geometry.Insets;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
-import mco1.Model.Locations.Miner;
+import mco1.Model.Locations.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -45,6 +45,7 @@ public class MainMapController implements EventHandler<Event>
     @FXML Label displayRotates;
     @FXML Label displayScans;
     @FXML Label displayMoves;
+    @FXML Label displayCurrentMode;
 
     Pane minerPane;
     ArrayList<Pane> pitPanes;
@@ -98,7 +99,7 @@ public class MainMapController implements EventHandler<Event>
             for(int j = 0; j < this.dimension; j++)
             {
                 panes[i][j] = new Pane();
-                panes[i][j].setOnMousePressed(this::handle);
+                panes[i][j].setOnMouseClicked(this::handle);
                 panes[i][j].setStyle("-fx-border-color: black; -fx-border-width: 1;");
             }
 
@@ -130,18 +131,105 @@ public class MainMapController implements EventHandler<Event>
         // Pane Press
         else if(ev.getSource() instanceof Pane)
         {
+            Pane source = (Pane) ev.getSource();
+            //System.out.println("Coordinates: " + String.valueOf(GridPane.getRowIndex(source)) + " " + String.valueOf(GridPane.getColumnIndex(source)));
+
+            // Return if miner
+            if(source.getChildren().size() > 0)
+                if(mainBoard.getMinerAgent().getRow() == GridPane.getRowIndex(source) &&
+                        mainBoard.getMinerAgent().getCol() == GridPane.getColumnIndex(source))
+                    return;
+
             if(this.initState == 1)
             {
                 // Set the Gold Pot
+                // Load the image
+                Image image = new Image("./mco1/View/POG.png");
+                ImageView goldImage = new ImageView(image);
+
+                // Check if there is already a pot
+                if(!GoldenSquare.isSet())
+                {
+                    System.out.println("Place first gold");
+                    // Case 1 - No Gold Pot yet
+                    this.goldPane = source;
+                    mainBoard.placeGold(GridPane.getRowIndex(source) + 1, GridPane.getColumnIndex(source) + 1);
+                }
+                else if(mainBoard.getSquare(GridPane.getRowIndex(source) + 1, GridPane.getColumnIndex(source) + 1) instanceof Empty)
+                {
+                    System.out.println("Overwrite Gold");
+                    // Case 2 - Gold Pot is already set
+                    // Remove old gold pot
+                    this.goldPane.getChildren().clear();
+                    mainBoard.resetSquare(GridPane.getRowIndex(this.goldPane) + 1, GridPane.getColumnIndex(this.goldPane) + 1);
+                    // Set new gold pot
+                    this.goldPane = source;
+                    mainBoard.placeGold(GridPane.getRowIndex(source) + 1, GridPane.getColumnIndex(source) + 1);
+                }
+
+                // Load image to source
+                goldImage.fitWidthProperty().bind(this.goldPane.widthProperty());
+                goldImage.fitHeightProperty().bind(this.goldPane.heightProperty());
+                this.goldPane.getChildren().add(goldImage);
+
             }
             else if(this.initState == 2)
             {
-                // Set the Pits
+                // Check if source already has pit
+                if(mainBoard.getSquare(GridPane.getRowIndex(source) + 1, GridPane.getColumnIndex(source) + 1) instanceof Pit)
+                {
+                    // Already has pit
+                    // Remove from ArrayList
+                    this.pitPanes.remove(source);
+                    source.getChildren().clear();
+                    mainBoard.resetSquare(GridPane.getRowIndex(source) + 1, GridPane.getColumnIndex(source) + 1);
+                }
+                else if(mainBoard.getSquare(GridPane.getRowIndex(source) + 1, GridPane.getColumnIndex(source) + 1) instanceof Empty)
+                {
+                    // Load the image
+                    Image image = new Image("./mco1/View/Pit.png");
+                    ImageView pitImage = new ImageView(image);
+
+                    // Update model
+                    mainBoard.placePit(GridPane.getRowIndex(source) + 1, GridPane.getColumnIndex(source) + 1);
+
+                    // Create new pit
+                    this.pitPanes.add(source);
+                    pitImage.fitWidthProperty().bind(source.widthProperty());
+                    pitImage.fitHeightProperty().bind(source.heightProperty());
+                    source.getChildren().add(pitImage);
+                }
+
             }
             else if(this.initState == 3)
             {
                 // Set Beacons
+                // Load the Image
+                Image image = new Image("./mco1/View/Beacon.png");
+                ImageView beaconImage = new ImageView(image);
+
+                if(mainBoard.getSquare(GridPane.getRowIndex(source) + 1, GridPane.getColumnIndex(source) + 1) instanceof Empty)
+                {
+                    // New Beacon
+                    // Check if valid location
+                    boolean valid = mainBoard.placeBeacon(GridPane.getRowIndex(source) + 1, GridPane.getColumnIndex(source) + 1);
+                    if(valid)
+                    {
+                        this.beaconPanes.add(source);
+                        beaconImage.fitWidthProperty().bind(source.widthProperty());
+                        beaconImage.fitHeightProperty().bind(source.heightProperty());
+                        source.getChildren().add(beaconImage);
+                    }
+                }
+                else if(mainBoard.getSquare(GridPane.getRowIndex(source) + 1, GridPane.getColumnIndex(source) + 1) instanceof Beacon)
+                {
+                    // Remove Beacon
+                    mainBoard.resetSquare(GridPane.getRowIndex(source) + 1, GridPane.getColumnIndex(source) + 1);
+                    this.beaconPanes.remove(source);
+                    source.getChildren().clear();
+                }
             }
+            updateCheckers();
         }
     }
 
@@ -155,14 +243,17 @@ public class MainMapController implements EventHandler<Event>
             if(((Button) ev.getSource()).getId().equals(setGoldButton.getId()))
             {
                 this.initState = 1;
+                displayCurrentMode.setText("Inputting Gold");
             }
             else if(((Button) ev.getSource()).getId().equals(setPitButton.getId()))
             {
                 this.initState = 2;
+                displayCurrentMode.setText("Inputting Pits");
             }
             else if(((Button) ev.getSource()).getId().equals(setBeaconButton.getId()))
             {
                 this.initState = 3;
+                displayCurrentMode.setText("Inputting Beacons");
             }
         }
         else if(ev.getSource() instanceof ComboBox)
@@ -263,5 +354,24 @@ public class MainMapController implements EventHandler<Event>
         minerImage.fitHeightProperty().bind(panes[minerRow][minerCol].heightProperty());
         this.panes[minerRow][minerCol].getChildren().add(minerImage);
         this.minerPane = this.panes[minerRow][minerRow];
+    }
+
+    // Updates the checkboxes
+    private void updateCheckers()
+    {
+        if(GoldenSquare.isSet())
+            this.checkGold.setSelected(true);
+        else if(!GoldenSquare.isSet())
+            this.checkGold.setSelected(false);
+
+        if(Pit.isSet())
+            this.checkPit.setSelected(true);
+        else if(!Pit.isSet())
+            this.checkPit.setSelected(false);
+
+        if(Beacon.isSet())
+            this.checkBeacon.setSelected(true);
+        else if(!Beacon.isSet())
+            this.checkBeacon.setSelected(false);
     }
 }
