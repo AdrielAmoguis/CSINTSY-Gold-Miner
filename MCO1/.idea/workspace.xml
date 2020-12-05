@@ -108,29 +108,41 @@
     </state>
     <state x="274" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1607096250265" />
     <state x="414" y="179" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607074241349" />
+    <state x="466" y="258" width="433" height="218" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1607179694543">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="466" y="258" width="433" height="218" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.728@0.0.1366.728" timestamp="1607179694543" />
     <state x="666" y="266" key="FileChooserDialogImpl" timestamp="1607074091582">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="666" y="266" key="FileChooserDialogImpl/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607074091582" />
-    <state width="1877" height="171" key="GridCell.Tab.0.bottom" timestamp="1607080725909">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1607097772326">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1607097772326" />
     <state width="1877" height="171" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607080725909" />
-    <state width="1877" height="171" key="GridCell.Tab.0.center" timestamp="1607080725909">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1607097772326">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1607097772326" />
     <state width="1877" height="171" key="GridCell.Tab.0.center/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607080725909" />
-    <state width="1877" height="171" key="GridCell.Tab.0.left" timestamp="1607080725909">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1607097772326">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1607097772326" />
     <state width="1877" height="171" key="GridCell.Tab.0.left/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607080725909" />
-    <state width="1877" height="171" key="GridCell.Tab.0.right" timestamp="1607080725909">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1607097772326">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728/-1280.2.1280.984@0.0.1366.728" timestamp="1607097772326" />
     <state width="1877" height="171" key="GridCell.Tab.0.right/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607080725909" />
     <state x="616" y="243" key="run.anything.popup" timestamp="1607081074932">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="616" y="243" key="run.anything.popup/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607081074932" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1607183785758">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1607183785758" />
   </component>
 </project>

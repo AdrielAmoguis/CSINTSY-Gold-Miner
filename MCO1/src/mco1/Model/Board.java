@@ -36,6 +36,10 @@ public class Board {
         }
         // Initialize miner and place at upper-left corner of grid
         minerAgent = new Miner(0,0);
+        // Reset counters
+        Beacon.resetCounter();
+        GoldenSquare.resetCounter();
+        Pit.resetCounter();
     }
 
     /**
@@ -92,6 +96,7 @@ public class Board {
             map.get(row).set(col, new GoldenSquare(row, col));
             // set in class attributes for easy access
             goal = (GoldenSquare)map.get(row).get(col);
+            GoldenSquare.increment();
         }
     }
 
@@ -105,6 +110,7 @@ public class Board {
             row -= 1;
             col -= 1;
             map.get(row).set(col, new Pit(row, col));
+            Pit.increment();
         }
     }
 
@@ -133,7 +139,7 @@ public class Board {
                     throw new Exception("Beacon is not in line with goal");
                 }
                 map.get(row).set(col, new Beacon(row, col, distance));
-
+                Beacon.increment();
             }
             catch (Exception e){
                 System.out.println(e.toString());
@@ -151,9 +157,20 @@ public class Board {
         if (validPosition(row, col)){
             row -= 1;
             col -= 1;
+            Location location = map.get(row).get(col);
             // if square is not already Empty, set as Empty
-            if (!(map.get(row).get(col) instanceof Empty))
+            if (!(location instanceof Empty)){
+                // if Beacon
+                if (location instanceof Beacon)
+                    Beacon.decrement();
+                // if GoldenSquare
+                else if (location instanceof GoldenSquare)
+                    GoldenSquare.decrement();
+                // if Pit
+                else
+                    Pit.decrement();
                 map.get(row).set(col, new Empty(row, col));
+            }
         }
     }
 
@@ -162,7 +179,7 @@ public class Board {
      * Also increments nScans counter.
      * @return Nearest location in front of Miner. Returns null if none
      */
-    public Location scan(){
+    public Location farScan(){
          int minerRow = minerAgent.getRow();
          int minerCol = minerAgent.getCol();
          List<Location> scannedLocations = new ArrayList<>();
@@ -192,15 +209,51 @@ public class Board {
          for (int i = 0; i < scannedLocations.size(); i++){
              // returns the first Location that is not Empty
              if (!(scannedLocations.get(i) instanceof Empty)){
-                 System.out.println("[Board] Scanned Location: " + scannedLocations.get(i).getClass().getName());
+                 // System.out.println("[Board] Scanned Location: " + scannedLocations.get(i).getClass().getName());
                  return scannedLocations.get(i);
              }
          }
          // if no Locations scanned, return null
-         System.out.println("[Board] No scanned Locations");
+         // System.out.println("[Board] No scanned Locations");
          return null;
     }
 
+    /**
+     * Returns the Location directly in front of Miner.
+     * @return the Location directly in front of Miner.
+     */
+    public Location nearScan(){
+        switch(minerAgent.getFront()){
+            case 0:
+                // If miner is at right edge, no Location to be returned
+                if (minerAgent.getCol() == getMapSize() - 1)
+                    return null;
+                else // return right side
+                    return map.get(minerAgent.getRow()).get(minerAgent.getCol() + 1);
+            case 90:
+                // If miner is at upper edge, no Location to be returned
+                if (minerAgent.getRow() == 0)
+                    return null;
+                else // return top side
+                    return map.get(minerAgent.getRow() - 1).get(minerAgent.getCol());
+            case 180:
+                // If miner is at left edge, no Location to be returned
+                if (minerAgent.getCol() == 0)
+                    return null;
+                else  // return left side
+                    return map.get(minerAgent.getRow()).get(minerAgent.getCol() - 1);
+            case 270:
+                // If miner is at lower edge, no Location to be returned
+                if (minerAgent.getRow() == getMapSize() - 1)
+                    return null;
+                else // return lower side
+                    return map.get(minerAgent.getRow() + 1).get(minerAgent.getCol());
+            default:
+                System.out.println("[Board] Error in nearScan(), front value faulty");
+                return null;
+        }
+        // Check for array index out of bounds
+    }
     /**
      * Moves the miner one position to his front. Initially checks if move is valid.
      * Also increments nMoves counter.
@@ -239,12 +292,14 @@ public class Board {
     /**
      * Returns true if the row & column input is valid.
      * Input is valid when: (1) Row & Column is within range of size of map IN NORMAL NOTATION [1, size]
+     *                      (2) The position is still Empty
      * @param row row of Location to be placed
      * @param col row of Location to be placed
      * @return true if input is valid, false if otherwise
      */
     private boolean validPosition(int row, int col){
-        return (row >= 1 && row <= getMapSize()) && (col >= 1 && col <= getMapSize());
+        return (row >= 1 && row <= getMapSize()) && (col >= 1 && col <= getMapSize())
+                && (map.get(row-1).get(col-1) instanceof Empty);
     }
 
     /**

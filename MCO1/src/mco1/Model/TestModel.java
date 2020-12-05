@@ -13,9 +13,9 @@ public class TestModel {
         board.placeBeacon(3,3);
         board.displayMap();
         board.getMinerAgent().rotate();
-        board.scan(); // Downward scan
+        board.farScan(); // Downward scan
         board.getMinerAgent().rotate();
-        board.scan(); // Left scan
+        board.farScan(); // Left scan
 
 
 
