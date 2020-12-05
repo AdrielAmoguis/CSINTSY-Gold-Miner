@@ -1,11 +1,17 @@
 package mco1.Controllers;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import mco1.Model.Board;
 import javafx.fxml.FXML;
 import javafx.event.*;
 import javafx.geometry.Insets;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
+import mco1.Model.Locations.Miner;
+
+import java.io.File;
+import java.util.ArrayList;
 
 public class MainMapController implements EventHandler<Event>
 {
@@ -22,6 +28,9 @@ public class MainMapController implements EventHandler<Event>
     @FXML
     AnchorPane mainPane;
 
+    @FXML
+    ScrollPane mainScrollPane;
+
     @FXML Button setGoldButton;
     @FXML Button setPitButton;
     @FXML Button setBeaconButton;
@@ -37,6 +46,10 @@ public class MainMapController implements EventHandler<Event>
     @FXML Label displayScans;
     @FXML Label displayMoves;
 
+    Pane minerPane;
+    ArrayList<Pane> pitPanes;
+    ArrayList<Pane> beaconPanes;
+    Pane goldPane;
 
     GridPane mainGridPane;
 
@@ -50,6 +63,10 @@ public class MainMapController implements EventHandler<Event>
         this.initState = 0;
         this.dimension = n;
         this.algorithm = 0;
+        this.pitPanes = new ArrayList<Pane>();
+        this.beaconPanes = new ArrayList<Pane>();
+        this.minerPane = null;
+        this.goldPane = null;
     }
 
     @FXML
@@ -60,25 +77,20 @@ public class MainMapController implements EventHandler<Event>
 
         // Create the GridPane
         this.mainGridPane = new GridPane();
-        mainGridPane.setPrefHeight(773);
-        mainGridPane.setPrefWidth(1302);
-        mainGridPane.setPadding(new Insets(10, 10, 10, 10));
-        mainPane.getChildren().add(mainGridPane);
+        mainScrollPane.setContent(mainGridPane);
 
         // Set Size Constraints
         for(int i = 0; i < this.dimension; i++)
         {
-            double scale = mainGridPane.getPrefHeight() / this.dimension;
             RowConstraints rowConstraints = new RowConstraints();
-            rowConstraints.setPercentHeight(scale);
+            rowConstraints.setPrefHeight(64);
             mainGridPane.getRowConstraints().add(rowConstraints);
         }
 
         for(int i = 0; i < this.dimension; i++)
         {
-            double scale = mainGridPane.getPrefWidth() / this.dimension;
             ColumnConstraints columnConstraints = new ColumnConstraints();
-            columnConstraints.setPercentWidth(scale);
+            columnConstraints.setPrefWidth(64);
             mainGridPane.getColumnConstraints().add(columnConstraints);
         }
 
@@ -103,6 +115,9 @@ public class MainMapController implements EventHandler<Event>
 
         // Disable the simulation button
         startSimulationButton.setDisable(true);
+
+        // Initialize the View
+        updateView();
     }
 
 
@@ -166,9 +181,6 @@ public class MainMapController implements EventHandler<Event>
         }
     }
 
-    // Update Direction
-
-
     // Update Start Simulation Button State
     private void updateSimulationButtonState()
     {
@@ -183,10 +195,14 @@ public class MainMapController implements EventHandler<Event>
     }
 
     // Update Miner Direction
-    private void updateMinerDirection()
+    private void updateView()
     {
+        // Label Displays
         // Get from model
         int direction = mainBoard.getMinerAgent().getFront();
+        int moves = mainBoard.getnMoves();
+        int scans = mainBoard.getnScans();
+        int rotates = mainBoard.getnRotates();
 
         String facing = null;
         switch(direction)
@@ -204,7 +220,48 @@ public class MainMapController implements EventHandler<Event>
                 facing = new String("South");
         }
 
-        // Update the label
+        // Update the labels
         directionLabel.setText(facing);
+        displayMoves.setText(String.valueOf(moves));
+        displayRotates.setText(String.valueOf(rotates));
+        displayScans.setText(String.valueOf(scans));
+        counterDisplay.setText(String.valueOf(moves + rotates + scans));
+
+        // Update Graphical View
+        // Miner Image
+        Miner miner = mainBoard.getMinerAgent();
+        int minerRow = miner.getRow();
+        int minerCol = miner.getCol();
+
+        // Load image based on direction
+        Image image;
+        ImageView minerImage = new ImageView();
+        switch(direction)
+        {
+            case 0:
+                // Load miner right
+                image = new Image("./mco1/View/PickaxeRight.png");
+                minerImage.setImage(image);
+                break;
+            case 90:
+                // Load miner top
+                image = new Image("./mco1/View/PickaxeTop.png");
+                minerImage.setImage(image);
+                break;
+            case 180:
+                // Load miner left
+                image = new Image("./mco1/View/PickaxeLeft.png");
+                minerImage.setImage(image);
+                break;
+            case 270:
+                image = new Image("./mco1/View/PickaxeBottom.png");
+                minerImage.setImage(image);
+        }
+        if(this.minerPane != null)
+            this.minerPane.getChildren().clear();
+        minerImage.fitWidthProperty().bind(panes[minerRow][minerCol].widthProperty());
+        minerImage.fitHeightProperty().bind(panes[minerRow][minerCol].heightProperty());
+        this.panes[minerRow][minerCol].getChildren().add(minerImage);
+        this.minerPane = this.panes[minerRow][minerRow];
     }
 }
