@@ -43,4 +43,8 @@ public class Pit extends Location{
     public static boolean isSet(){
         return counter > 0;
     }
+
+    public static void getCounter(){
+        System.out.println("Pit Counter: " + counter);
+    }
 }
