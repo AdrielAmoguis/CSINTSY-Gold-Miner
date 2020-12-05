@@ -36,6 +36,10 @@ public class Board {
         }
         // Initialize miner and place at upper-left corner of grid
         minerAgent = new Miner(0,0);
+        // Reset counters
+        Beacon.resetCounter();
+        GoldenSquare.resetCounter();
+        Pit.resetCounter();
     }
 
     /**
@@ -88,10 +92,13 @@ public class Board {
             // decrement by 1 to follow index notation
             row -= 1;
             col -= 1;
-            // place in map
-            map.get(row).set(col, new GoldenSquare(row, col));
-            // set in class attributes for easy access
-            goal = (GoldenSquare)map.get(row).get(col);
+            if (isEmpty(row, col)) {
+                // place in map
+                map.get(row).set(col, new GoldenSquare(row, col));
+                // set in class attributes for easy access
+                goal = (GoldenSquare) map.get(row).get(col);
+                GoldenSquare.increment();
+            }
         }
     }
 
@@ -104,7 +111,10 @@ public class Board {
         if (validPosition(row, col)){
             row -= 1;
             col -= 1;
-            map.get(row).set(col, new Pit(row, col));
+            if (isEmpty(row, col)){
+                map.get(row).set(col, new Pit(row, col));
+                Pit.increment();
+            }
         }
     }
 
@@ -117,27 +127,29 @@ public class Board {
         if (validPosition(row, col)){
             row -= 1;
             col -= 1;
-            // Check if GoldenSquare goal has been placed.
-            // Although GoldenSquare should be placed first, one more line of defence.
-            try{
-                int goldRow = goal.getRow();
-                int goldCol = goal.getCol();
-                int distance = -1;
-                // if Beacon is in same row as goal, calculate distance between their columns.
-                if (row == goldRow)
-                    distance = Math.abs(goldCol - col);
-                // if Beacon is in same column as goal, calculate distance between their rows.
-                else if (col == goldRow)
-                    distance = Math.abs(goldRow - row);
-                else{
-                    throw new Exception("Beacon is not in line with goal");
+            if (isEmpty(row, col)){
+                // Check if GoldenSquare goal has been placed.
+                // Although GoldenSquare should be placed first, one more line of defence.
+                try{
+                    int goldRow = goal.getRow();
+                    int goldCol = goal.getCol();
+                    int distance = -1;
+                    // if Beacon is in same row as goal, calculate distance between their columns.
+                    if (row == goldRow)
+                        distance = Math.abs(goldCol - col);
+                        // if Beacon is in same column as goal, calculate distance between their rows.
+                    else if (col == goldRow)
+                        distance = Math.abs(goldRow - row);
+                    else{
+                        throw new Exception("Beacon is not in line with goal");
+                    }
+                    map.get(row).set(col, new Beacon(row, col, distance));
+                    Beacon.increment();
                 }
-                map.get(row).set(col, new Beacon(row, col, distance));
-
-            }
-            catch (Exception e){
-                System.out.println(e.toString());
-                System.out.println("Initialize GoldenSquare (goal) first before placing other elements");
+                catch (Exception e){
+                    System.out.println(e.toString());
+                    System.out.println("Initialize GoldenSquare (goal) first before placing other elements");
+                }
             }
         }
     }
@@ -152,8 +164,18 @@ public class Board {
             row -= 1;
             col -= 1;
             // if square is not already Empty, set as Empty
-            if (!(map.get(row).get(col) instanceof Empty))
+            if (!(map.get(row).get(col) instanceof Empty)){
+                // if Beacon
+                if (map.get(row).get(col) instanceof Beacon)
+                    Beacon.decrement();
+                // if GoldenSquare
+                else if (map.get(row).get(col) instanceof GoldenSquare)
+                    GoldenSquare.decrement();
+                // if Pit
+                else if (map.get(row).get(col) instanceof Pit)
+                    Pit.decrement();
                 map.get(row).set(col, new Empty(row, col));
+            }
         }
     }
 
@@ -162,7 +184,7 @@ public class Board {
      * Also increments nScans counter.
      * @return Nearest location in front of Miner. Returns null if none
      */
-    public Location scan(){
+    public Location farScan(){
          int minerRow = minerAgent.getRow();
          int minerCol = minerAgent.getCol();
          List<Location> scannedLocations = new ArrayList<>();
@@ -174,9 +196,8 @@ public class Board {
                  break;
              // Facing left -> scan [Row's First Column, Miner's Column]
              case 180:
-                 scannedLocations = map.get(minerRow).subList(0, minerCol);
-                 // reverse the orientation since we want to start scan from Miner's column
-                 Collections.reverse(scannedLocations);
+                 for (int col = minerCol; col > 0; col--)
+                     scannedLocations.add(map.get(minerRow).get(col));
                  break;
              // Facing up -> scan [Miner's Column, Column's First Row]
              case 90:
@@ -192,15 +213,51 @@ public class Board {
          for (int i = 0; i < scannedLocations.size(); i++){
              // returns the first Location that is not Empty
              if (!(scannedLocations.get(i) instanceof Empty)){
-                 System.out.println("[Board] Scanned Location: " + scannedLocations.get(i).getClass().getName());
+                 // System.out.println("[Board] Scanned Location: " + scannedLocations.get(i).getClass().getName());
                  return scannedLocations.get(i);
              }
          }
          // if no Locations scanned, return null
-         System.out.println("[Board] No scanned Locations");
+         // System.out.println("[Board] No scanned Locations");
          return null;
     }
 
+    /**
+     * Returns the Location directly in front of Miner.
+     * @return the Location directly in front of Miner.
+     */
+    public Location nearScan(){
+        switch(minerAgent.getFront()){
+            case 0:
+                // If miner is at right edge, no Location to be returned
+                if (minerAgent.getCol() == getMapSize() - 1)
+                    return null;
+                else // return right side
+                    return map.get(minerAgent.getRow()).get(minerAgent.getCol() + 1);
+            case 90:
+                // If miner is at upper edge, no Location to be returned
+                if (minerAgent.getRow() == 0)
+                    return null;
+                else // return top side
+                    return map.get(minerAgent.getRow() - 1).get(minerAgent.getCol());
+            case 180:
+                // If miner is at left edge, no Location to be returned
+                if (minerAgent.getCol() == 0)
+                    return null;
+                else  // return left side
+                    return map.get(minerAgent.getRow()).get(minerAgent.getCol() - 1);
+            case 270:
+                // If miner is at lower edge, no Location to be returned
+                if (minerAgent.getRow() == getMapSize() - 1)
+                    return null;
+                else // return lower side
+                    return map.get(minerAgent.getRow() + 1).get(minerAgent.getCol());
+            default:
+                System.out.println("[Board] Error in nearScan(), front value faulty");
+                return null;
+        }
+        // Check for array index out of bounds
+    }
     /**
      * Moves the miner one position to his front. Initially checks if move is valid.
      * Also increments nMoves counter.
@@ -229,7 +286,7 @@ public class Board {
      * Resets the position of the miner to upper left corner of grid.
      * Also resets the counters.
      */
-    public void reset(){
+    public void resetMiner(){
         minerAgent.reset();
         nRotates = 0;
         nScans = 0;
@@ -245,6 +302,16 @@ public class Board {
      */
     private boolean validPosition(int row, int col){
         return (row >= 1 && row <= getMapSize()) && (col >= 1 && col <= getMapSize());
+    }
+
+    /**
+     * Returns true if the Location is Empty.
+     * @param row row of Location
+     * @param col column of Location
+     * @return true if the Location is Empty.
+     */
+    private boolean isEmpty(int row, int col){
+        return map.get(row).get(col) instanceof Empty;
     }
 
     /**

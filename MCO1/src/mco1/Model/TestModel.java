@@ -1,5 +1,7 @@
 package mco1.Model;
 
+import mco1.Model.Locations.Pit;
+
 public class TestModel {
     public static void main(String[] args){
         // Check if scan is functional -> Good
@@ -11,13 +13,23 @@ public class TestModel {
         board.placePit(1,2);
         board.placeGold(3,6);
         board.placeBeacon(3,3);
+        board.resetSquare(1,2);
+        Pit.getCounter();
+        board.displayMap(); // first map display
+        /*
+        board.getMinerAgent().rotate();
+        board.farScan(); // Downward scan
+        board.getMinerAgent().rotate();
+        board.farScan(); // Left scan
+        Pit.getCounter();
+        board.placePit(1,3);
+        board.placePit(3,3);
         board.displayMap();
-        board.getMinerAgent().rotate();
-        board.scan(); // Downward scan
-        board.getMinerAgent().rotate();
-        board.scan(); // Left scan
-
-
+        Pit.getCounter();
+        board.resetSquare(1,2);
+        board.displayMap();
+        Pit.getCounter();
+    */
 
         /*
         // Check if placement of Locations is functional -> Good.
