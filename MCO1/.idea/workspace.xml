@@ -20,10 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="912b7be8-5b09-489c-a4b4-44deff28fac6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MCO.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MCO1/mco1/View/MainMap.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MCO1/mco1/View/MainMap.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mco1/Controllers/MainMapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mco1/Controllers/MainMapController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/mco1/View/MainMap.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/mco1/View/MainMap.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +64,7 @@
       </method>
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration>C:\Users\redst\AppData\Roaming\Subversion</configuration>
   </component>
@@ -105,22 +104,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="666" y="266" key="FileChooserDialogImpl/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607074091582" />
-    <state width="1877" height="171" key="GridCell.Tab.0.bottom" timestamp="1607095775356">
+    <state width="1877" height="171" key="GridCell.Tab.0.bottom" timestamp="1607181819614">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="171" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607095775356" />
-    <state width="1877" height="171" key="GridCell.Tab.0.center" timestamp="1607095775356">
+    <state width="1877" height="171" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607181819614" />
+    <state width="1877" height="171" key="GridCell.Tab.0.center" timestamp="1607181819614">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="171" key="GridCell.Tab.0.center/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607095775356" />
-    <state width="1877" height="171" key="GridCell.Tab.0.left" timestamp="1607095775355">
+    <state width="1877" height="171" key="GridCell.Tab.0.center/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607181819614" />
+    <state width="1877" height="171" key="GridCell.Tab.0.left" timestamp="1607181819614">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="171" key="GridCell.Tab.0.left/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607095775355" />
-    <state width="1877" height="171" key="GridCell.Tab.0.right" timestamp="1607095775356">
+    <state width="1877" height="171" key="GridCell.Tab.0.left/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607181819614" />
+    <state width="1877" height="171" key="GridCell.Tab.0.right" timestamp="1607181819614">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="171" key="GridCell.Tab.0.right/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607095775356" />
+    <state width="1877" height="171" key="GridCell.Tab.0.right/0.0.1920.1050/-1024.304.1024.738@0.0.1920.1050" timestamp="1607181819614" />
     <state x="461" y="169" key="SettingsEditor" timestamp="1607095720366">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>

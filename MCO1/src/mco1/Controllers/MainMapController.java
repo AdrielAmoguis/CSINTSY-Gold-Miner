@@ -15,6 +15,9 @@ public class MainMapController implements EventHandler<Event>
     // Board Instance
     private Board mainBoard;
 
+    // Algorithm
+    private int algorithm;
+
     // JavaFX Instances
     @FXML
     AnchorPane mainPane;
@@ -29,6 +32,10 @@ public class MainMapController implements EventHandler<Event>
     @FXML Button startSimulationButton;
     @FXML ComboBox comboAlgo;
     @FXML Label counterDisplay;
+    @FXML Label directionLabel;
+    @FXML Label displayRotates;
+    @FXML Label displayScans;
+    @FXML Label displayMoves;
 
 
     GridPane mainGridPane;
@@ -42,6 +49,7 @@ public class MainMapController implements EventHandler<Event>
         this.mainBoard = new Board(n);
         this.initState = 0;
         this.dimension = n;
+        this.algorithm = 0;
     }
 
     @FXML
@@ -87,6 +95,14 @@ public class MainMapController implements EventHandler<Event>
         {
             mainGridPane.addRow(i, panes[i]);
         }
+
+        // Setup the Algorithm Picker
+        comboAlgo.getItems().add("Random");
+        comboAlgo.getItems().add("Breadth First Search");
+        comboAlgo.setOnAction(this::handle);
+
+        // Disable the simulation button
+        startSimulationButton.setDisable(true);
     }
 
 
@@ -125,7 +141,70 @@ public class MainMapController implements EventHandler<Event>
             {
                 this.initState = 1;
             }
-
+            else if(((Button) ev.getSource()).getId().equals(setPitButton.getId()))
+            {
+                this.initState = 2;
+            }
+            else if(((Button) ev.getSource()).getId().equals(setBeaconButton.getId()))
+            {
+                this.initState = 3;
+            }
         }
+        else if(ev.getSource() instanceof ComboBox)
+        {
+            // ComboBox Handler
+            if(((ComboBox) ev.getSource()).getId().equals((comboAlgo.getId())))
+            {
+                ComboBox comboBox = (ComboBox) ev.getSource();
+                switch(comboBox.getValue().toString())
+                {
+                    case "Random": this.algorithm = 1; break;
+                    case "Breadth First Search": this.algorithm = 2; break;
+                }
+                updateSimulationButtonState();
+            }
+        }
+    }
+
+    // Update Direction
+
+
+    // Update Start Simulation Button State
+    private void updateSimulationButtonState()
+    {
+        boolean doEnable = true;
+        if(this.algorithm == 0)
+            doEnable = false;
+
+        if(doEnable)
+            startSimulationButton.setDisable(false);
+        else
+            startSimulationButton.setDisable(true);
+    }
+
+    // Update Miner Direction
+    private void updateMinerDirection()
+    {
+        // Get from model
+        int direction = mainBoard.getMinerAgent().getFront();
+
+        String facing = null;
+        switch(direction)
+        {
+            case 0:
+                facing = new String("East");
+                break;
+            case 90:
+                facing = new String("North");
+                break;
+            case 180:
+                facing = new String("West");
+                break;
+            case 270:
+                facing = new String("South");
+        }
+
+        // Update the label
+        directionLabel.setText(facing);
     }
 }
