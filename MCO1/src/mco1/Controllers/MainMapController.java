@@ -1,7 +1,10 @@
 package mco1.Controllers;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 import mco1.Model.Board;
 import javafx.fxml.FXML;
 import javafx.event.*;
@@ -9,10 +12,13 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import mco1.Model.Locations.*;
+import javafx.animation.Timeline;
 
 import java.beans.beancontext.BeanContext;
 import java.io.File;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MainMapController implements EventHandler<Event>
 {
@@ -60,6 +66,10 @@ public class MainMapController implements EventHandler<Event>
 
     private Pane[][] panes;
 
+    private Timeline timeline;
+
+    private boolean simulationState;
+
     public MainMapController(int n)
     {
         this.mainBoard = new Board(n);
@@ -69,6 +79,7 @@ public class MainMapController implements EventHandler<Event>
         this.pitPanes = new ArrayList<Pane>();
         this.beaconPanes = new ArrayList<Pane>();
         this.goldPane = null;
+        this.simulationState = false;
     }
 
     @FXML
@@ -277,6 +288,23 @@ public class MainMapController implements EventHandler<Event>
                 mainBoard.farScan();
                 updateView();
             }
+
+            // Start Simulation
+            else if(source.getId().equals(startSimulationButton.getId()))
+            {
+                if(this.simulationState)
+                {
+                    this.simulationState = false;
+                    startSimulationButton.setText("Start Simulation");
+                    stopSimulation();
+                }
+                else
+                {
+                    this.simulationState = true;
+                    startSimulationButton.setText("Stop Simulation");
+                    doSimulation();
+                }
+            }
         }
         else if(ev.getSource() instanceof ComboBox)
         {
@@ -434,5 +462,52 @@ public class MainMapController implements EventHandler<Event>
             displayCurrentMode.setText("Failed to reach Goal.");
 
         mainPane.setDisable(true);
+    }
+
+    // PERFORM SIMULATION
+    private void doSimulation()
+    {
+        // Check Rationality
+        if(this.algorithm == 0)
+            return;
+        else if(this.algorithm == 1)
+        {
+            System.out.println("Starting Random Rationality");
+            this.timeline = new Timeline(
+                    new KeyFrame(Duration.seconds(.10),
+                            e -> {
+                                    // RANDOM
+                                    Random randomizer = new Random();
+                                    randomizer.setSeed(LocalDateTime.now().getNano());
+
+                                    // SEQUENCE OF MOVEMENTS: RANDOM AF
+                                    int action = randomizer.nextInt(3);
+                                    switch(action)
+                                    {
+                                        case 0: // Move Forward
+                                            mainBoard.moveMiner();
+                                            break;
+                                        case 1: // Scan
+                                            mainBoard.farScan();
+                                            break;
+                                        case 2: // Rotate
+                                            mainBoard.rotateMiner();
+                                            break;
+                                }
+                                updateView();
+                            })
+            );
+            this.timeline.setCycleCount(Animation.INDEFINITE);
+            this.timeline.play();
+        }
+        else if(this.algorithm == 2)
+        {
+            // SMART
+        }
+    }
+
+    public void stopSimulation()
+    {
+        this.timeline.stop();
     }
 }
