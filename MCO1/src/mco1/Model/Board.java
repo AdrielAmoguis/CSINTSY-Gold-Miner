@@ -117,7 +117,7 @@ public class Board {
      * @param col column of Location (in normal notation)
      */
     public void placePit(int row, int col){
-        if (validPosition(row, col)){
+        if (validPosition(row, col) && !Beacon.isSet()){
             row -= 1;
             col -= 1;
             if (isEmpty(row, col)){
@@ -133,31 +133,68 @@ public class Board {
      * @param col column of Location (in normal notation)
      */
     public boolean placeBeacon(int row, int col) {
-        if (validPosition(row, col)){
+        // Check if GoldenSquare goal has been placed.
+        if (validPosition(row, col) && GoldenSquare.isSet()){
             row -= 1;
             col -= 1;
+            // If Location is Empty
             if (isEmpty(row, col)){
-                // Check if GoldenSquare goal has been placed.
-                // Although GoldenSquare should be placed first, one more line of defence.
+                // Exception handling for : (1) Beacon not in line with goal
+                //                          (2) Pit obstructing Beacon from goal
                 try{
                     int goldRow = goal.getRow();
                     int goldCol = goal.getCol();
-                    int distance = -1;
+                    int distance, direction;
                     // if Beacon is in same row as goal, calculate distance between their columns.
-                    if (row == goldRow)
-                        distance = Math.abs(goldCol - col);
-                        // if Beacon is in same column as goal, calculate distance between their rows.
-                    else if (col == goldRow)
+                    if (row == goldRow){
+                        direction = goldCol - col;
+                        distance = Math.abs(direction);
+                        // Beacon at right of Gold, check for Pits
+                        if (direction < 0){
+                            for (int testCol = col; testCol > goldCol; testCol--)
+                                if (map.get(row).get(testCol) instanceof Pit)
+                                    throw new Exception("Pit blocking beacon to goal. Cannot place");
+                        }
+                        // Beacon at left of Gold, check for Pits
+                        else{
+                            for (int testCol = col; testCol < goldCol; testCol++)
+                                if (map.get(row).get(testCol) instanceof Pit)
+                                    throw new Exception("Pit blocking beacon to goal. Cannot place");
+                        }
+                    }
+
+                    // if Beacon is in same column as goal, calculate distance between their rows.
+                    else if (col == goldRow){
+                        direction = goldRow - row;
                         distance = Math.abs(goldRow - row);
+                        // Beacon is below Gold, check for Pits
+                        if (direction < 0){
+                            for (int testRow = row; testRow > goldRow; testRow--){
+                                if (map.get(testRow).get(col) instanceof Pit)
+                                    throw new Exception("Pit blocking beacon to goal. Cannot place");
+                            }
+                        }
+                        // Beacon is above Gold, check for Pits
+                        else{
+                            for (int testRow = row; testRow < goldRow; testRow++){
+                                if (map.get(testRow).get(col) instanceof Pit)
+                                    throw new Exception("Pit blocking beacon to goal. Cannot place");
+                            }
+                        }
+                    }
+                    // Beacon not in line with goal
                     else{
                         throw new Exception("Beacon is not in line with goal");
                     }
+
+                    // Check if there are any pits obstructing path from Beacon to Goal
+
                     map.get(row).set(col, new Beacon(row, col, distance));
                     Beacon.increment();
                 }
                 catch (Exception e){
                     System.out.println(e.toString());
-                    System.out.println("Initialize GoldenSquare (goal) first before placing other elements");
+                    //System.out.println("Initialize GoldenSquare (goal) first before placing other elements");
                     return false;
                 }
                 return true;
