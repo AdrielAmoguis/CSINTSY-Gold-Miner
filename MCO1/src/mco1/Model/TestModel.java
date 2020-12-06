@@ -1,10 +1,77 @@
 package mco1.Model;
-
-import mco1.Model.Locations.Pit;
+import mco1.Model.Locations.*;
+import java.util.*;
 
 public class TestModel {
     public static void main(String[] args){
-        // Check if scan is functional -> Good
+        int nSize = 8;
+        Board board = new Board(8);
+        // place Gold
+        board.placeGold(4,5);
+        // place Pit
+        board.placePit(2,1);
+        board.placePit(1,5);
+        board.placePit(1,8);
+        // place Beacon
+        board.placeBeacon(2,5);
+        board.placeBeacon(4,4);
+        board.placeBeacon(4,6);
+
+        // ============== SIMULATE ===============
+        Stack stack = new Stack();
+        // Set upper left square in grid as root node
+        Node root = new Node(board.getSquare(0,0));
+        root.visit();
+        stack.push(root);
+        // While Miner has not reached GoldenSquare or Pit && Miner ran out of moves
+        while (board.getStatus() == 0 && !stack.empty()){
+            // the current parent node / location
+            Node currentNode = (Node) stack.pop();
+            // scan 4 directions
+            for (int counter = 1; counter <= 4; counter++){
+                // farScan and check if a Beacon/GoldenSquare is in line of sight
+                Location location = board.farScan();
+                // if Beacon/GoldenSquare exists
+                if (location instanceof Beacon || location instanceof GoldenSquare){
+                    // Pop all and push Beacon/GoldenSquare
+                    while(!stack.empty())
+                        stack.pop();
+                    // Push and break out of loop (scanning 4 directions)
+                    stack.push(new Node(location, currentNode));
+                    break;
+                }
+                // scan directly in front
+                else{
+                    location = board.nearScan();
+                    if (location instanceof Empty)
+                        stack.push(new Node(location, currentNode));
+                }
+                // rotate to next direction
+                board.rotateMiner();
+            }
+            // rotate and move to desired next Location from stack (if any)
+            if(!stack.empty()){
+                Location currentLocation = currentNode.getLocation();
+                Location nextLocation = ((Node)stack.peek()).getLocation();
+                // if next Location is not adjacent to current Location, Miner backtracks until adjacent
+                // (might need to check for out of bounds)
+                while(currentLocation.getRow() != nextLocation.getRow() && currentLocation.getCol() != nextLocation.getCol()){
+                    Location backtrackLocation = currentNode.getParent().getLocation();
+                    // Miner rotates and moves to backtrackLocation
+                    
+                }
+
+            }
+
+        }
+
+    }
+}
+
+
+
+// Check if scan is functional -> Good
+        /*
         int boardSize = 6;
         Board board = new Board(boardSize);
         System.out.println(board.getMapSize());
@@ -27,7 +94,7 @@ public class TestModel {
         board.resetSquare(1,2);
         board.displayMap();
         Pit.getCounter();
-
+*/
 
         /*
         // Check if placement of Locations is functional -> Good.
@@ -57,6 +124,3 @@ public class TestModel {
         board.resetMiner();
         board.getMinerAgent().displayPosition();
         */
-
-    }
-}

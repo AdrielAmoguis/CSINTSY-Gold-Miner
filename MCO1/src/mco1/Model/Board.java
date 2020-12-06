@@ -19,6 +19,13 @@ public class Board {
     private int nRotates;
     private int nScans;
     private int nMoves;
+    /**
+     * Represents the current status of the Miner.
+     * 0 - ongoing
+     * 1 - Goal reached
+     * 2 - Fell in Pit
+     */
+    private int status;
 
     /**
      * Creates an nxn board with Empty locations.
@@ -40,6 +47,7 @@ public class Board {
         Beacon.resetCounter();
         GoldenSquare.resetCounter();
         Pit.resetCounter();
+        status = 0; // ongoing
     }
 
     /**
@@ -90,6 +98,19 @@ public class Board {
         return nMoves;
     }
 
+    /**
+     * Returns the status of the Miner.
+     * @return 0 - ongoing, 1 - goal reached, 2 - fell in Pit
+     */
+    public int getStatus(){
+        Location currentLocation = map.get(minerAgent.getRow()).get(minerAgent.getCol());
+        if (currentLocation instanceof Empty || currentLocation instanceof Beacon)
+            return 0;
+        else if (currentLocation instanceof GoldenSquare)
+            return 1;
+        else
+            return 2;
+    }
     /**
      * Replaces the Location at [row - 1,col - 1] with GoldenSquare.
      * Can only place when there input is valid and there is no existing GoldenSquare.
@@ -341,6 +362,7 @@ public class Board {
         nRotates = 0;
         nScans = 0;
         nMoves = 0;
+        status = 0;
     }
 
     /**
