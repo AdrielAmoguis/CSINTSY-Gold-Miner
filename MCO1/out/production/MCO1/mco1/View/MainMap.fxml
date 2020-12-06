@@ -17,58 +17,43 @@
          </font>
       </Label>
       <Line endX="1186.0" layoutX="115.0" layoutY="777.0" startX="-100.0" />
-      <Button id="mainMapButton" fx:id="setGoldButton" layoutX="15.0" layoutY="892.0" mnemonicParsing="false" onAction="#handle" prefHeight="1.0" prefWidth="255.0" stylesheets="@styles.css" text="Set Pot of Gold">
-         <font>
-            <Font name="Lucida Console" size="23.0" />
-         </font>
-      </Button>
-      <Button fx:id="setPitButton" layoutX="281.0" layoutY="892.0" mnemonicParsing="false" onAction="#handle" prefHeight="1.0" prefWidth="150.0" text="Set Pits">
-         <font>
-            <Font name="Lucida Console" size="23.0" />
-         </font>
-      </Button>
-      <Button fx:id="setBeaconButton" layoutX="441.0" layoutY="892.0" mnemonicParsing="false" onAction="#handle" prefHeight="11.0" prefWidth="187.0" text="Set Beacons">
-         <font>
-            <Font name="Lucida Console" size="23.0" />
-         </font>
-      </Button>
-      <CheckBox fx:id="checkGold" disable="true" layoutX="81.0" layoutY="941.0" mnemonicParsing="false" text="Pot of Gold">
+      <CheckBox fx:id="checkGold" disable="true" layoutX="302.0" layoutY="888.0" mnemonicParsing="false" text="Pot of Gold">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="checkPit" disable="true" layoutX="325.0" layoutY="938.0" mnemonicParsing="false" text="Pits">
+      <CheckBox fx:id="checkPit" disable="true" layoutX="302.0" layoutY="912.0" mnemonicParsing="false" text="Pits">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="checkBeacon" disable="true" layoutX="486.0" layoutY="938.0" mnemonicParsing="false" text="Beacons">
+      <CheckBox fx:id="checkBeacon" disable="true" layoutX="302.0" layoutY="935.0" mnemonicParsing="false" text="Beacons">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </CheckBox>
-      <Button fx:id="startSimulationButton" layoutX="925.0" layoutY="916.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="255.0" text="Start Simulation" textAlignment="CENTER" wrapText="true">
+      <Button fx:id="startSimulationButton" layoutX="712.0" layoutY="916.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="255.0" text="Start Simulation" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Lucida Console" size="23.0" />
          </font>
       </Button>
-      <CheckBox fx:id="checkSlowMode" layoutX="959.0" layoutY="887.0" mnemonicParsing="false" text="Enable Slow Mode?">
+      <CheckBox fx:id="checkSlowMode" layoutX="738.0" layoutY="887.0" mnemonicParsing="false" text="Enable Slow Mode?">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </CheckBox>
-      <ComboBox fx:id="comboAlgo" layoutX="658.0" layoutY="918.0" onAction="#handle" prefHeight="41.0" prefWidth="228.0" promptText="Choose One" />
-      <Label layoutX="654.0" layoutY="890.0" text="Choose Search Algorithm:">
+      <ComboBox fx:id="comboAlgo" layoutX="452.0" layoutY="915.0" onAction="#handle" prefHeight="41.0" prefWidth="228.0" promptText="Choose One" />
+      <Label layoutX="462.0" layoutY="890.0" text="Choose Rationality:">
          <font>
             <Font name="Lucida Console" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="1197.0" layoutY="890.0" text="Actions:">
+      <Label layoutX="987.0" layoutY="888.0" text="Actions:">
          <font>
             <Font name="Lucida Console" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="counterDisplay" layoutX="1223.0" layoutY="920.0" text="0">
+      <Label fx:id="counterDisplay" layoutX="1023.0" layoutY="917.0" text="0">
          <font>
             <Font name="Lucida Console" size="40.0" />
          </font>
@@ -110,10 +95,35 @@
             <Font name="Lucida Console" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="displayCurrentMode" layoutX="818.0" layoutY="818.0" text="Idle">
+      <Label fx:id="displayCurrentMode" layoutX="818.0" layoutY="818.0" text="Inputting Gold">
          <font>
             <Font name="Lucida Console" size="40.0" />
          </font>
       </Label>
+      <Button fx:id="nextStepButton" layoutX="22.0" layoutY="898.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="255.0" text="Input Pits" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Lucida Console" size="23.0" />
+         </font>
+      </Button>
+      <Label layoutX="1116.0" layoutY="886.0" text="Manual Moving:">
+         <font>
+            <Font name="Lucida Console" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="commandRotate" layoutX="1127.0" layoutY="912.0" mnemonicParsing="false" text="Rotate">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="commandMove" layoutX="1204.0" layoutY="912.0" mnemonicParsing="false" text="Move">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="commandScan" layoutX="1172.0" layoutY="938.0" mnemonicParsing="false" text="Scan">
+         <font>
+            <Font name="Lucida Console" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
