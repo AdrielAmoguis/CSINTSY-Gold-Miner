@@ -83,12 +83,13 @@ public class Board {
     }
 
     /**
-     * Replaces the Location at [row - 1,col - 1] with GoldenSquare
+     * Replaces the Location at [row - 1,col - 1] with GoldenSquare.
+     * Can only place when there input is valid and there is no existing GoldenSquare.
      * @param row row of Location (in normal notation)
      * @param col column of Location (in normal notation)
      */
     public void placeGold(int row, int col){
-        if(validPosition(row, col)){
+        if(validPosition(row, col) && !GoldenSquare.isSet()){
             // decrement by 1 to follow index notation
             row -= 1;
             col -= 1;
@@ -163,16 +164,17 @@ public class Board {
         if (validPosition(row, col)){
             row -= 1;
             col -= 1;
+            Location location = map.get(row).get(col);
             // if square is not already Empty, set as Empty
-            if (!(map.get(row).get(col) instanceof Empty)){
+            if (!(location instanceof Empty)){
                 // if Beacon
-                if (map.get(row).get(col) instanceof Beacon)
+                if (location instanceof Beacon)
                     Beacon.decrement();
                 // if GoldenSquare
-                else if (map.get(row).get(col) instanceof GoldenSquare)
+                else if (location instanceof GoldenSquare)
                     GoldenSquare.decrement();
                 // if Pit
-                else if (map.get(row).get(col) instanceof Pit)
+                else if (location instanceof Pit)
                     Pit.decrement();
                 map.get(row).set(col, new Empty(row, col));
             }
