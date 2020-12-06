@@ -63,12 +63,11 @@ public class MainMapController implements EventHandler<Event>
     public MainMapController(int n)
     {
         this.mainBoard = new Board(n);
-        this.initState = 1;
+        this.initState = 0;
         this.dimension = n;
         this.algorithm = 0;
         this.pitPanes = new ArrayList<Pane>();
         this.beaconPanes = new ArrayList<Pane>();
-        this.minerPane = null;
         this.goldPane = null;
     }
 
@@ -123,6 +122,7 @@ public class MainMapController implements EventHandler<Event>
         commandScan.setDisable(true);
 
         // Initialize the View
+        this.minerPane = this.panes[0][0];
         updateView();
     }
 
@@ -155,14 +155,12 @@ public class MainMapController implements EventHandler<Event>
                 // Check if there is already a pot
                 if(!GoldenSquare.isSet())
                 {
-                    System.out.println("Place first gold");
                     // Case 1 - No Gold Pot yet
                     this.goldPane = source;
                     mainBoard.placeGold(GridPane.getRowIndex(source) + 1, GridPane.getColumnIndex(source) + 1);
                 }
                 else if(mainBoard.getSquare(GridPane.getRowIndex(source) + 1, GridPane.getColumnIndex(source) + 1) instanceof Empty)
                 {
-                    System.out.println("Overwrite Gold");
                     // Case 2 - Gold Pot is already set
                     // Remove old gold pot
                     this.goldPane.getChildren().clear();
@@ -204,7 +202,6 @@ public class MainMapController implements EventHandler<Event>
                     pitImage.fitHeightProperty().bind(source.heightProperty());
                     source.getChildren().add(pitImage);
                 }
-
             }
             else if(this.initState == 3)
             {
@@ -235,6 +232,7 @@ public class MainMapController implements EventHandler<Event>
                 }
             }
             updateCheckers();
+            updateButtonStates();
         }
     }
 
@@ -262,6 +260,23 @@ public class MainMapController implements EventHandler<Event>
                 this.initState++;
                 updateCheckers();
             }
+
+            // Movement Buttons
+            else if(source.getId().equals(commandRotate.getId()))
+            {
+                mainBoard.rotateMiner();
+                updateView();
+            }
+            else if(source.getId().equals(commandMove.getId()))
+            {
+                mainBoard.moveMiner();
+                updateView();
+            }
+            else if(source.getId().equals(commandScan.getId()))
+            {
+                mainBoard.farScan();
+                updateView();
+            }
         }
         else if(ev.getSource() instanceof ComboBox)
         {
@@ -272,7 +287,7 @@ public class MainMapController implements EventHandler<Event>
                 switch(comboBox.getValue().toString())
                 {
                     case "Random": this.algorithm = 1; break;
-                    case "Breadth First Search": this.algorithm = 2; break;
+                    case "Smart": this.algorithm = 2; break;
                 }
                 updateButtonStates();
             }
@@ -283,17 +298,18 @@ public class MainMapController implements EventHandler<Event>
     private void updateButtonStates()
     {
         if(GoldenSquare.isSet() &&
-            Pit.isSet() && Beacon.isSet() &&
-            this.algorithm != 0)
+            Pit.isSet() && Beacon.isSet())
         {
-            startSimulationButton.setDisable(false);
+            if(this.algorithm != 0)
+                startSimulationButton.setDisable(false);
             commandScan.setDisable(false);
             commandRotate.setDisable(false);
             commandMove.setDisable(false);
         }
         else
         {
-            startSimulationButton.setDisable(true);
+            if(this.algorithm == 0)
+                startSimulationButton.setDisable(true);
             commandScan.setDisable(true);
             commandRotate.setDisable(true);
             commandMove.setDisable(true);
@@ -301,7 +317,7 @@ public class MainMapController implements EventHandler<Event>
     }
 
     // Update Miner Direction
-    private void updateView()
+    public void updateView()
     {
         // Label Displays
         // Get from model
@@ -363,12 +379,14 @@ public class MainMapController implements EventHandler<Event>
                 image = new Image("./mco1/View/PickaxeBottom.png");
                 minerImage.setImage(image);
         }
-        if(this.minerPane != null)
+        if(this.minerPane.getChildren().size() > 1)
+            this.minerPane.getChildren().remove(1);
+        else
             this.minerPane.getChildren().clear();
         minerImage.fitWidthProperty().bind(panes[minerRow][minerCol].widthProperty());
         minerImage.fitHeightProperty().bind(panes[minerRow][minerCol].heightProperty());
         this.panes[minerRow][minerCol].getChildren().add(minerImage);
-        this.minerPane = this.panes[minerRow][minerRow];
+        this.minerPane = this.panes[minerRow][minerCol];
     }
 
     // Updates the checkboxes
@@ -387,6 +405,8 @@ public class MainMapController implements EventHandler<Event>
                 break;
             case 3:
                 displayCurrentMode.setText("Inputting Beacons");
+                nextStepButton.setText("DONE");
+                nextStepButton.setDisable(true);
         }
 
         if(GoldenSquare.isSet())
@@ -403,5 +423,16 @@ public class MainMapController implements EventHandler<Event>
             this.checkBeacon.setSelected(true);
         else if(!Beacon.isSet())
             this.checkBeacon.setSelected(false);
+    }
+
+    // Show Alert to User
+    public void endSimulation(boolean success)
+    {
+        if(success)
+            displayCurrentMode.setText("Goal Reached!");
+        else
+            displayCurrentMode.setText("Failed to reach Goal.");
+
+        mainPane.setDisable(true);
     }
 }

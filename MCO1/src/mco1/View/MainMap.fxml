@@ -95,12 +95,12 @@
             <Font name="Lucida Console" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="displayCurrentMode" layoutX="818.0" layoutY="818.0" text="Inputting Gold">
+      <Label fx:id="displayCurrentMode" layoutX="818.0" layoutY="818.0" text="Idle">
          <font>
             <Font name="Lucida Console" size="40.0" />
          </font>
       </Label>
-      <Button fx:id="nextStepButton" layoutX="22.0" layoutY="898.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="255.0" text="Input Pits" textAlignment="CENTER" wrapText="true">
+      <Button fx:id="nextStepButton" layoutX="22.0" layoutY="898.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="255.0" text="Input Gold" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Lucida Console" size="23.0" />
          </font>
@@ -110,17 +110,17 @@
             <Font name="Lucida Console" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="commandRotate" layoutX="1127.0" layoutY="912.0" mnemonicParsing="false" text="Rotate">
+      <Button fx:id="commandRotate" layoutX="1127.0" layoutY="912.0" mnemonicParsing="false" onAction="#handle" text="Rotate">
          <font>
             <Font name="Lucida Console" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="commandMove" layoutX="1204.0" layoutY="912.0" mnemonicParsing="false" text="Move">
+      <Button fx:id="commandMove" layoutX="1204.0" layoutY="912.0" mnemonicParsing="false" onAction="#handle" text="Move">
          <font>
             <Font name="Lucida Console" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="commandScan" layoutX="1172.0" layoutY="938.0" mnemonicParsing="false" text="Scan">
+      <Button fx:id="commandScan" layoutX="1172.0" layoutY="938.0" mnemonicParsing="false" onAction="#handle" text="Scan">
          <font>
             <Font name="Lucida Console" size="15.0" />
          </font>
