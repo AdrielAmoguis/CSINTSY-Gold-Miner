@@ -164,7 +164,7 @@ public class Board {
                     }
 
                     // if Beacon is in same column as goal, calculate distance between their rows.
-                    else if (col == goldRow){
+                    else if (col == goldCol){
                         direction = goldRow - row;
                         distance = Math.abs(goldRow - row);
                         // Beacon is below Gold, check for Pits
