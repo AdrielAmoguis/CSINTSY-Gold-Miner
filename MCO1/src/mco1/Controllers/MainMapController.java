@@ -277,16 +277,19 @@ public class MainMapController implements EventHandler<Event>
             {
                 mainBoard.rotateMiner();
                 updateView();
+                declareStatus();
             }
             else if(source.getId().equals(commandMove.getId()))
             {
                 mainBoard.moveMiner();
                 updateView();
+                declareStatus();
             }
             else if(source.getId().equals(commandScan.getId()))
             {
                 mainBoard.farScan();
                 updateView();
+                declareStatus();
             }
 
             // Start Simulation
@@ -296,12 +299,14 @@ public class MainMapController implements EventHandler<Event>
                 {
                     this.simulationState = false;
                     startSimulationButton.setText("Start Simulation");
+                    displayCurrentMode.setText("Idle");
                     stopSimulation();
                 }
                 else
                 {
                     this.simulationState = true;
                     startSimulationButton.setText("Stop Simulation");
+                    displayCurrentMode.setText("Searching...");
                     doSimulation();
                 }
             }
@@ -406,6 +411,7 @@ public class MainMapController implements EventHandler<Event>
             case 270:
                 image = new Image("./mco1/View/PickaxeBottom.png");
                 minerImage.setImage(image);
+
         }
         if(this.minerPane.getChildren().size() > 1)
             this.minerPane.getChildren().remove(1);
@@ -413,6 +419,7 @@ public class MainMapController implements EventHandler<Event>
             this.minerPane.getChildren().clear();
         minerImage.fitWidthProperty().bind(panes[minerRow][minerCol].widthProperty());
         minerImage.fitHeightProperty().bind(panes[minerRow][minerCol].heightProperty());
+        minerImage.setRotate(minerImage.getRotate() + 45);
         this.panes[minerRow][minerCol].getChildren().add(minerImage);
         this.minerPane = this.panes[minerRow][minerCol];
     }
@@ -453,17 +460,6 @@ public class MainMapController implements EventHandler<Event>
             this.checkBeacon.setSelected(false);
     }
 
-    // Show Alert to User
-    public void endSimulation(boolean success)
-    {
-        if(success)
-            displayCurrentMode.setText("Goal Reached!");
-        else
-            displayCurrentMode.setText("Failed to reach Goal.");
-
-        mainPane.setDisable(true);
-    }
-
     // PERFORM SIMULATION
     private void doSimulation()
     {
@@ -472,7 +468,6 @@ public class MainMapController implements EventHandler<Event>
             return;
         else if(this.algorithm == 1)
         {
-            System.out.println("Starting Random Rationality");
             this.timeline = new Timeline(
                     new KeyFrame(Duration.seconds(.10),
                             e -> {
@@ -495,6 +490,12 @@ public class MainMapController implements EventHandler<Event>
                                             break;
                                 }
                                 updateView();
+                                if(mainBoard.getStatus() != 0)
+                                {
+                                    this.timeline.stop();
+                                    declareStatus();
+                                    declareStatus();
+                                }
                             })
             );
             this.timeline.setCycleCount(Animation.INDEFINITE);
@@ -509,5 +510,16 @@ public class MainMapController implements EventHandler<Event>
     public void stopSimulation()
     {
         this.timeline.stop();
+    }
+
+    public void declareStatus()
+    {
+        if(mainBoard.getStatus() == 0) return;
+
+        mainPane.setDisable(true);
+        if(mainBoard.getStatus() == 1)
+            displayCurrentMode.setText("FOUND GOLD!");
+        else if(mainBoard.getStatus() == 2)
+            displayCurrentMode.setText("FELL IN PIT!");
     }
 }
