@@ -24,6 +24,7 @@ public class Board {
      * 0 - ongoing
      * 1 - Goal reached
      * 2 - Fell in Pit
+     * 3 - No solution
      */
     private int status;
 
@@ -100,7 +101,7 @@ public class Board {
 
     /**
      * Returns the status of the Miner.
-     * @return 0 - ongoing, 1 - goal reached, 2 - fell in Pit
+     * @return 0 - ongoing, 1 - goal reached, 2 - fell in Pit, 3 - no solution
      */
     public int getStatus(){
         Location currentLocation = map.get(minerAgent.getRow()).get(minerAgent.getCol());
@@ -261,23 +262,24 @@ public class Board {
          List<Location> scannedLocations = new ArrayList<>();
          nScans += 1;
          switch(minerAgent.getFront()){
-             // Facing right -> scan [Miner's Column, Row's Last Column]
+             // Facing right -> scan (Miner's Column, Row's Last Column]
              case 0:
-                 scannedLocations = map.get(minerRow).subList(minerCol, getMapSize());
+                 if (minerAgent.getCol() != getMapSize() - 1)
+                    scannedLocations = map.get(minerRow).subList(minerCol + 1, getMapSize());
                  break;
-             // Facing left -> scan [Row's First Column, Miner's Column]
+             // Facing left -> scan [Row's First Column, Miner's Column)
              case 180:
-                 for (int col = minerCol; col > 0; col--)
+                 for (int col = minerCol - 1; col > 0; col--)
                      scannedLocations.add(map.get(minerRow).get(col));
                  break;
              // Facing up -> scan [Miner's Column, Column's First Row]
              case 90:
-                 for (int row = minerRow; row > 0; row--)
+                 for (int row = minerRow - 1; row > 0; row--)
                      scannedLocations.add(map.get(row).get(minerCol));
                  break;
              // Facing down -> scan [Miner's Column, Column's Last Row]
              case 270:
-                 for (int row = minerRow; row < getMapSize(); row++)
+                 for (int row = minerRow + 1; row < getMapSize(); row++)
                      scannedLocations.add(map.get(row).get(minerCol));
                  break;
          }
@@ -363,6 +365,14 @@ public class Board {
         nScans = 0;
         nMoves = 0;
         status = 0;
+    }
+
+    /**
+     * Sets status as 3: No solution.
+     * Used after searching the whole map and stack becomes empty.
+     */
+    public void setNoSolution(){
+        status = 3;
     }
 
     /**

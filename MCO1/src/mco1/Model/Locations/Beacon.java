@@ -1,6 +1,6 @@
 package mco1.Model.Locations;
 
-public class Beacon extends Location{
+public class Beacon extends Location implements GuidedLocation{
     /**
      * Distance from Beacon to Golden Square.
      */

@@ -1,6 +1,6 @@
 package mco1.Model.Locations;
 
-public class Location {
+public abstract class Location {
     /**
      * Represents at which row the location is at
      */
@@ -9,6 +9,10 @@ public class Location {
      * Represents at which column the location is at
      */
     protected int col;
+    /**
+     * True if the Location has been visited. False otherwise.
+     */
+    private boolean visitedStatus;
 
     /**
      * Creates a Location at [row,col]
@@ -34,6 +38,21 @@ public class Location {
      */
     public int getCol(){
         return col;
+    }
+
+    /**
+     * Returns true if the Location has been visited.
+     * @return true if the Location has been visited
+     */
+    public boolean isVisited(){
+        return visitedStatus;
+    }
+
+    /**
+     * Sets this Location as visited.
+     */
+    public void visit(){
+        visitedStatus = true;
     }
 
 }

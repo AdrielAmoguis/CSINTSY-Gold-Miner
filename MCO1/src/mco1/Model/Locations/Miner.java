@@ -6,6 +6,10 @@ public class Miner extends Location{
      * Uses angle degree notation: 0 = facing right, 90 = facing up,, 180 = facing right, 270 = facing down
      */
     private int front;
+    public static final int RIGHT = 0;
+    public static final int UP = 90;
+    public static final int LEFT = 180;
+    public static final int DOWN = 270;
 
     /**
      * Creates a Miner at [row,col]. Should be instantiated at [0,0]

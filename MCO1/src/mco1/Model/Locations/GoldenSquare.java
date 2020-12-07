@@ -1,6 +1,6 @@
 package mco1.Model.Locations;
 
-public class GoldenSquare extends Location{
+public class GoldenSquare extends Location implements GuidedLocation{
 
     /**
      * Creates a Golden Square at [row, col]

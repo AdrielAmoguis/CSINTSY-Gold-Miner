@@ -41,18 +41,4 @@ public class Node {
         return parent;
     }
 
-    /**
-     * Returns true if the Node has been visited.
-     * @return true if the Node has been visited
-     */
-    public boolean getStatus(){
-        return isVisited;
-    }
-
-    /**
-     * Sets this node as visited.
-     */
-    public void visit(){
-        isVisited = true;
-    }
 }
