@@ -78,7 +78,7 @@ public class TestModel {
                 Location nextLocation = ((Node)stack.peek()).getLocation();
                 int nextRow = nextLocation.getRow();
                 int nextCol = nextLocation.getCol();
-                /*
+
                 // If a Beacon or GoldenSquare has been scanned
                 if (nextLocation instanceof GuidedLocation){
                     // Continue moving GoldenSquare has been reached (no need to rotate)
@@ -86,7 +86,7 @@ public class TestModel {
                     if (nextLocation instanceof Beacon){
                         int minerRow = board.getMinerAgent().getRow();
                         int minerCol = board.getMinerAgent().getCol();
-                        while (!(board.getSquare(board.getMinerAgent().getRow(), board.getMinerAgent().getCol()) instanceof Beacon))
+                        while (!(board.getSquare(board.getMinerAgent().getRow()+1, board.getMinerAgent().getCol()+1) instanceof Beacon))
                             board.moveMiner();
                         // Scan for GoldenSquare
                         for (int counter = 1; counter <= 4; counter++) {
@@ -95,12 +95,12 @@ public class TestModel {
                                 break;
                             board.rotateMiner();
                         }
+                        while (!(board.getSquare(board.getMinerAgent().getRow()+1, board.getMinerAgent().getCol()+1) instanceof GoldenSquare))
+                            board.moveMiner();
                     }
-                    while (!(board.getSquare(board.getMinerAgent().getRow(), board.getMinerAgent().getCol()) instanceof GoldenSquare))
-                        board.moveMiner();
                 }
 
-                 */
+
                 // Continue exploring to next Location
                 //else{
                     // Miner BACKTRACKS until adjacent if next Location is not adjacent to current Location

@@ -529,106 +529,113 @@ public class MainMapController implements EventHandler<Event>
             this.timeline.play();
         } else if (this.algorithm == 2) {
             // SMART
-            Stack stack = new Stack();
-            // Set upper left square in grid as root node
-            Node root = new Node(mainBoard.getSquare(1, 1));
-            stack.push(root);
-            // While Miner ongoing (not reached Gold/Pit) && Miner ran out of moves
-            while (mainBoard.getStatus() == 0 && !stack.empty()) {
-                // the current parent node / location
-                Node currentNode = (Node) stack.pop();
-                mainBoard.getMinerAgent().displayPosition();
-                currentNode.getLocation().visit(); // set location as visited
-                // scan 4 directions
-                for (int counter = 1; counter <= 4; counter++) {
-                    // farScan and check if a Beacon/GoldenSquare is in line of sight
-                    Location location = mainBoard.farScan();
-                    // if Beacon/GoldenSquare exists
-                    if (location instanceof Beacon || location instanceof GoldenSquare) {
-                        // Pop all and push Beacon/GoldenSquare
-                        while (!stack.empty())
-                            stack.pop();
-                        // Push and break out of loop
-                        stack.push(new Node(location, currentNode));
-                        break;
-                    }
-                    // scan directly in front
-                    else {
-                        location = mainBoard.nearScan();
-                        // Push to stack if not a Pit and not visited
-                        if (location instanceof Empty && !location.isVisited())
-                            stack.push(new Node(location, currentNode));
-                    }
-                    // rotate to next direction
-                    mainBoard.rotateMiner();
-                    updateView();
-                }
-                // ROTATE and MOVE to desired NEXT LOCATION from stack (if any)
-                if (!stack.empty()) {
-                    // next Location details
-                    Location nextLocation = ((Node) stack.peek()).getLocation();
-                    int nextRow = nextLocation.getRow();
-                    int nextCol = nextLocation.getCol();
-                    /*
-                    // If a Beacon or GoldenSquare has been scanned
-                    if (nextLocation instanceof GuidedLocation) {
-                        // Continue moving GoldenSquare has been reached (no need to rotate)
-                        // If Beacon was scanned, move to Beacon first
-                        if (nextLocation instanceof Beacon) {
-                            int minerRow = mainBoard.getMinerAgent().getRow();
-                            int minerCol = mainBoard.getMinerAgent().getCol();
-                            while (!(mainBoard.getSquare(mainBoard.getMinerAgent().getRow(), mainBoard.getMinerAgent().getCol()) instanceof Beacon)){
-                                mainBoard.moveMiner();
-                                updateView();
-                            }
+            this.timeline = new Timeline(
+                    new KeyFrame(Duration.seconds(1),
+                            e -> {
+                                Stack stack = new Stack();
+                                // Set upper left square in grid as root node
+                                Node root = new Node(mainBoard.getSquare(1, 1));
+                                stack.push(root);
+                                // While Miner ongoing (not reached Gold/Pit) && Miner ran out of moves
+                                while (mainBoard.getStatus() == 0 && !stack.empty()) {
+                                    // the current parent node / location
+                                    Node currentNode = (Node) stack.pop();
+                                    currentNode.getLocation().visit(); // set location as visited
+                                    // scan 4 directions
+                                    for (int counter = 1; counter <= 4; counter++) {
+                                        // farScan and check if a Beacon/GoldenSquare is in line of sight
+                                        Location location = mainBoard.farScan();
+                                        // if Beacon/GoldenSquare exists
+                                        if (location instanceof Beacon || location instanceof GoldenSquare) {
+                                            // Pop all and push Beacon/GoldenSquare
+                                            while (!stack.empty())
+                                                stack.pop();
+                                            // Push and break out of loop
+                                            stack.push(new Node(location, currentNode));
+                                            break;
+                                        }
+                                        // scan directly in front
+                                        else {
+                                            location = mainBoard.nearScan();
+                                            // Push to stack if not a Pit and not visited
+                                            if (location instanceof Empty && !location.isVisited())
+                                                stack.push(new Node(location, currentNode));
+                                        }
+                                        // rotate to next direction
+                                        mainBoard.rotateMiner();
+                                        updateView();
+                                    }
+                                    // ROTATE and MOVE to desired NEXT LOCATION from stack (if any)
+                                    if (!stack.empty()) {
+                                        // next Location details
+                                        Location nextLocation = ((Node) stack.peek()).getLocation();
+                                        int nextRow = nextLocation.getRow();
+                                        int nextCol = nextLocation.getCol();
 
-                            // Scan for GoldenSquare
-                            for (int counter = 1; counter <= 4; counter++) {
-                                Location location = mainBoard.farScan();
-                                if (location instanceof GoldenSquare)
-                                    break;
-                                mainBoard.rotateMiner();
-                                updateView();
-                            }
-                        }
-                        while (!(mainBoard.getSquare(mainBoard.getMinerAgent().getRow(), mainBoard.getMinerAgent().getCol()) instanceof GoldenSquare)){
-                            mainBoard.moveMiner();
-                            updateView();
-                        }
+                                        // If a Beacon or GoldenSquare has been scanned
+                                        if (nextLocation instanceof GuidedLocation) {
+                                            // Continue moving GoldenSquare has been reached (no need to rotate)
+                                            // If Beacon was scanned, move to Beacon first
+                                            if (nextLocation instanceof Beacon) {
+                                                int minerRow = mainBoard.getMinerAgent().getRow();
+                                                int minerCol = mainBoard.getMinerAgent().getCol();
+                                                while (!(mainBoard.getSquare(mainBoard.getMinerAgent().getRow()+1, mainBoard.getMinerAgent().getCol()+1) instanceof Beacon)){
+                                                    mainBoard.moveMiner();
+                                                    updateView();
+                                                }
+                                                // Scan for GoldenSquare
+                                                for (int counter = 1; counter <= 4; counter++) {
+                                                    Location location = mainBoard.farScan();
+                                                    if (location instanceof GoldenSquare)
+                                                        break;
+                                                    mainBoard.rotateMiner();
+                                                    updateView();
+                                                }
+                                            }
+                                            while (!(mainBoard.getSquare(mainBoard.getMinerAgent().getRow()+1, mainBoard.getMinerAgent().getCol()+1) instanceof GoldenSquare)){
+                                                mainBoard.moveMiner();
+                                                updateView();
+                                            }
+                                        }
 
-                    }
-
-                     */
-                    // Continue exploring to next Location
-                    //else {
-                        // Miner BACKTRACKS until adjacent if next Location is not adjacent to current Location
-                        // (might need to check for out of bounds)
-                        while (mainBoard.getMinerAgent().getRow() != nextRow && mainBoard.getMinerAgent().getCol() != nextCol) {
-                            // Miner should rotate and move to backtrackLocation
-                            Location backtrackLocation = currentNode.getParent().getLocation();
-                            int expectedAngle = computeAngle(mainBoard.getMinerAgent(), backtrackLocation.getRow(), backtrackLocation.getCol());
-                            // rotate to desired angle
-                            while (mainBoard.getMinerAgent().getFront() != expectedAngle){
-                                mainBoard.rotateMiner();
+                                        // Continue exploring to next Location
+                                        else {
+                                            // Miner BACKTRACKS until adjacent if next Location is not adjacent to current Location
+                                            // (might need to check for out of bounds)
+                                            while (mainBoard.getMinerAgent().getRow() != nextRow && mainBoard.getMinerAgent().getCol() != nextCol) {
+                                                // Miner should rotate and move to backtrackLocation
+                                                Location backtrackLocation = currentNode.getParent().getLocation();
+                                                int expectedAngle = computeAngle(mainBoard.getMinerAgent(), backtrackLocation.getRow(), backtrackLocation.getCol());
+                                                // rotate to desired angle
+                                                while (mainBoard.getMinerAgent().getFront() != expectedAngle){
+                                                    mainBoard.rotateMiner();
+                                                    updateView();
+                                                }
+                                                // move
+                                                mainBoard.moveMiner();
+                                                updateView();
+                                            }
+                                            // after backtracking (if needed) rotate and move to next Location in stack
+                                            int expectedAngle = computeAngle(mainBoard.getMinerAgent(), nextRow, nextCol);
+                                            while (mainBoard.getMinerAgent().getFront() != expectedAngle){
+                                                mainBoard.rotateMiner();
+                                                updateView();
+                                            }
+                                            mainBoard.moveMiner();
+                                            updateView();
+                                        }
+                                    }
+                                    // NO MORE MOVES? NO SOLUTION!
+                                    else
+                                        mainBoard.setNoSolution();
+                                }
+                                declareStatus();
                                 updateView();
-                            }
-                            // move
-                            mainBoard.moveMiner();
-                            updateView();
-                        }
-                        // after backtracking (if needed) rotate and move to next Location in stack
-                        int expectedAngle = computeAngle(mainBoard.getMinerAgent(), nextRow, nextCol);
-                        while (mainBoard.getMinerAgent().getFront() != expectedAngle){
-                            mainBoard.rotateMiner();
-                            updateView();
-                        }
-                        mainBoard.moveMiner();
-                        updateView();
-                   // }
-                } else
-                    mainBoard.setNoSolution();
-            }
-            declareStatus();
+                            })
+            );
+            this.timeline.setCycleCount(Animation.INDEFINITE);
+            this.timeline.play();
+
         }
     }
     public void stopSimulation()
@@ -645,6 +652,8 @@ public class MainMapController implements EventHandler<Event>
             displayCurrentMode.setText("FOUND GOLD!");
         else if(mainBoard.getStatus() == 2)
             displayCurrentMode.setText("FELL IN PIT!");
+        else if (mainBoard.getStatus() == 3)
+            displayCurrentMode.setText("NO SOLUTION");
     }
 
 }

@@ -104,6 +104,9 @@ public class Board {
      * @return 0 - ongoing, 1 - goal reached, 2 - fell in Pit, 3 - no solution
      */
     public int getStatus(){
+        // If alam na no solution
+        if (status == 3)
+            return status;
         Location currentLocation = map.get(minerAgent.getRow()).get(minerAgent.getCol());
         if (currentLocation instanceof Empty || currentLocation instanceof Beacon)
             return 0;
