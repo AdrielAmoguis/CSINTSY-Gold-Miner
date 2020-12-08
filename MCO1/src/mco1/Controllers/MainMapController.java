@@ -521,7 +521,7 @@ public class MainMapController implements EventHandler<Event>
                                     // farScan and check if a Beacon/GoldenSquare is in line of sight
                                     Location location = mainBoard.farScan();
                                     // if Beacon/GoldenSquare exists
-                                    if (location instanceof Beacon || location instanceof GoldenSquare) {
+                                    if (location instanceof GuidedLocation) {
                                         // Pop all and push Beacon/GoldenSquare
                                         while (!stack.empty())
                                             stack.pop();

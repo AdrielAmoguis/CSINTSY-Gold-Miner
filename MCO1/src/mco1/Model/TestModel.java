@@ -27,13 +27,14 @@ public class TestModel {
         // While Miner ongoing (not reached Gold/Pit) && Miner ran out of moves
         while (mainBoard.getStatus() == 0 && !stack.empty()){
             try{
-                Thread.sleep(10);
+                Thread.sleep(50);
             }
             catch(InterruptedException e){
                 e.printStackTrace();
             }
             // the current parent node / location
             Node currentNode = (Node) stack.pop();
+            System.out.println(currentNode.getLocation().getRow() + " | " + currentNode.getLocation().getCol());
             currentNode.getLocation().visit(); // set location as visited
             // scan 4 directions
             for (int counter = 1; counter <= 4; counter++){
@@ -76,17 +77,12 @@ public class TestModel {
                             mainBoard.moveMiner();
                             mainBoard.getMinerAgent().displayPosition();
                         }
-
                         // Scan for GoldenSquare
                         for (int counter = 1; counter <= 4; counter++) {
                             Location location = mainBoard.farScan();
                             if (location instanceof GoldenSquare)
                                 break;
                             mainBoard.rotateMiner();
-                        }
-                        while (!(mainBoard.getSquare(mainBoard.getMinerAgent().getRow()+1, mainBoard.getMinerAgent().getCol()+1) instanceof GoldenSquare)){
-                            mainBoard.moveMiner();
-                            mainBoard.getMinerAgent().displayPosition();
                         }
                     }
                 }
@@ -97,7 +93,6 @@ public class TestModel {
                     // (might need to check for out of bounds)
                     while(!mainBoard.isAdjacentTo(nextRow, nextCol)){
                         // Miner should rotate and move to backtrackLocation
-                        System.out.println("Backtracking");
                         Location backtrackLocation = currentNode.getParent().getLocation();
                         int expectedAngle = mainBoard.computeAngle(backtrackLocation.getRow(), backtrackLocation.getCol());
                         // rotate to desired angle
@@ -120,6 +115,7 @@ public class TestModel {
             else
                 mainBoard.setNoSolution();
         }
+
     }
 
 }
