@@ -466,34 +466,6 @@ public class MainMapController implements EventHandler<Event>
             this.checkBeacon.setSelected(false);
     }
 
-    /**
-     * Used to get the expected angle with respect to miner's current position and next Location.
-     * @param miner Miner agent
-     * @param nextRow row of next Location
-     * @param nextCol column of next Location
-     * @return expected angle
-     */
-    private int computeAngle(Miner miner, int nextRow, int nextCol){
-        int expectedAngle;
-        // If same row, check if right or left for rotation
-        if (nextRow == miner.getRow()){
-            // If backtrack location at right side
-            if(nextCol > miner.getCol())
-                expectedAngle = Miner.RIGHT;
-            else
-                expectedAngle = Miner.LEFT;
-        }
-        // If same column, check if up or down for rotation
-        else{
-            // If backtrack location is above
-            if (nextRow < miner.getRow())
-                expectedAngle = Miner.UP;
-            else
-                expectedAngle = Miner.DOWN;
-        }
-        return expectedAngle;
-    }
-
     // PERFORM SIMULATION
     private void doSimulation() {
         // Check Rationality
@@ -605,10 +577,10 @@ public class MainMapController implements EventHandler<Event>
                                     else {
                                         // Miner BACKTRACKS until adjacent if next Location is not adjacent to current Location
                                         // (might need to check for out of bounds)
-                                        while (mainBoard.getMinerAgent().getRow() != nextRow && mainBoard.getMinerAgent().getCol() != nextCol) {
+                                        while (!mainBoard.isAdjacentTo(nextRow, nextCol)) {
                                             // Miner should rotate and move to backtrackLocation
                                             Location backtrackLocation = currentNode.getParent().getLocation();
-                                            int expectedAngle = computeAngle(mainBoard.getMinerAgent(), backtrackLocation.getRow(), backtrackLocation.getCol());
+                                            int expectedAngle = mainBoard.computeAngle(backtrackLocation.getRow(), backtrackLocation.getCol());
                                             // rotate to desired angle
                                             while (mainBoard.getMinerAgent().getFront() != expectedAngle){
                                                 mainBoard.rotateMiner();
@@ -616,10 +588,12 @@ public class MainMapController implements EventHandler<Event>
                                             }
                                             // move
                                             mainBoard.moveMiner();
+                                            // backtracked to parent Node
+                                            currentNode = currentNode.getParent();
                                             updateView();
                                         }
                                         // after backtracking (if needed) rotate and move to next Location in stack
-                                        int expectedAngle = computeAngle(mainBoard.getMinerAgent(), nextRow, nextCol);
+                                        int expectedAngle = mainBoard.computeAngle(nextRow, nextCol);
                                         while (mainBoard.getMinerAgent().getFront() != expectedAngle){
                                             mainBoard.rotateMiner();
                                             updateView();

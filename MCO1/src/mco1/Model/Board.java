@@ -379,6 +379,48 @@ public class Board {
     }
 
     /**
+     * Used in backtracking to check if Miner is adjacent to a Location.
+     * Returns true if Miner is currently adjacent to a given Location
+     * @param row row of Position (normal notation)
+     * @param col column of Position (normal notation)
+     * @return true if Miner is adjacent to given Location
+     */
+    public boolean isAdjacentTo(int row, int col){
+        if (minerAgent.getRow() == row){
+            // Check if at left or at right
+            return minerAgent.getCol() == col - 1 || minerAgent.getCol() == col + 1;
+        }
+        else if (minerAgent.getCol() == col){
+            // Check if at up or down
+            return minerAgent.getRow() == row - 1 || minerAgent.getRow() == row + 1;
+        }
+        // Not adjacent
+        else
+            return false;
+    }
+
+    public int computeAngle(int nextRow, int nextCol){
+        int expectedAngle;
+        // If same row, check if right or left for rotation
+        if (nextRow == minerAgent.getRow()){
+            // If backtrack location at right side
+            if(nextCol > minerAgent.getCol())
+                expectedAngle = Miner.RIGHT;
+            else
+                expectedAngle = Miner.LEFT;
+        }
+        // If same column, check if up or down for rotation
+        else{
+            // If backtrack location is above
+            if (nextRow < minerAgent.getRow())
+                expectedAngle = Miner.UP;
+            else
+                expectedAngle = Miner.DOWN;
+        }
+        return expectedAngle;
+    }
+
+    /**
      * Returns true if the row & column input is valid.
      * Input is valid when: (1) Row & Column is within range of size of map IN NORMAL NOTATION [1, size]
      * @param row row of Location to be placed
