@@ -119,7 +119,10 @@ public class TestModel {
             }
             else
                 mainBoard.setNoSolution();
+
+            System.gc();
         }
+        System.out.println("Finished");
     }
 
 }
