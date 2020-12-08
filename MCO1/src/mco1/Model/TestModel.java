@@ -117,11 +117,7 @@ public class TestModel {
 
             System.gc();
         }
-<<<<<<< HEAD
-
-=======
         System.out.println("Finished");
->>>>>>> 9f1262c063ddd3a53f2c98d9ad6bf34008681faf
     }
 
 }
