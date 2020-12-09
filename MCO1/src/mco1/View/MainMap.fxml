@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
@@ -32,7 +33,7 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </CheckBox>
-      <Button fx:id="startSimulationButton" layoutX="712.0" layoutY="889.0" mnemonicParsing="false" onAction="#handle" prefHeight="72.0" prefWidth="255.0" text="Start Simulation" textAlignment="CENTER" wrapText="true">
+      <Button fx:id="startSimulationButton" layoutX="712.0" layoutY="916.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="255.0" text="Start Simulation" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Lucida Console" size="23.0" />
          </font>
@@ -125,5 +126,11 @@
             <Font name="Lucida Console" size="30.0" />
          </font>
       </Label>
+      <Label layoutX="712.0" layoutY="886.0" text="Speed:">
+         <font>
+            <Font name="Lucida Console" size="20.0" />
+         </font>
+      </Label>
+      <Slider fx:id="speedSlider" layoutX="797.0" layoutY="890.0" max="20.0" min="1.0" prefHeight="14.0" prefWidth="169.0" value="1.0" />
    </children>
 </AnchorPane>

@@ -57,6 +57,7 @@ public class MainMapController implements EventHandler<Event>
     @FXML Button commandRotate;
     @FXML Button commandScan;
     @FXML Button commandMove;
+    @FXML Slider speedSlider;
 
     Pane minerPane;
     ArrayList<Pane> pitPanes;
@@ -73,6 +74,8 @@ public class MainMapController implements EventHandler<Event>
 
     private boolean simulationState;
 
+    private SmartSearch searcher;
+
     public MainMapController(int n)
     {
         this.mainBoard = new Board(n);
@@ -83,6 +86,7 @@ public class MainMapController implements EventHandler<Event>
         this.beaconPanes = new ArrayList<Pane>();
         this.goldPane = null;
         this.simulationState = false;
+        this.searcher = null;
     }
 
     @FXML
@@ -139,7 +143,6 @@ public class MainMapController implements EventHandler<Event>
         this.minerPane = this.panes[0][0];
         updateView();
     }
-
 
     // Event Handler
     public void handle(Event ev)
@@ -300,22 +303,25 @@ public class MainMapController implements EventHandler<Event>
             {
                 if(this.simulationState)
                 {
+                    // Stop Simulation
                     this.simulationState = false;
                     startSimulationButton.setText("Start Simulation");
                     displayCurrentMode.setText("Idle");
+                    speedSlider.setDisable(false);
                     commandScan.setDisable(false);
                     commandMove.setDisable(false);
                     commandRotate.setDisable(false);
-                    comboAlgo.setDisable(false);
                     stopSimulation();
                 }
                 else
                 {
+                    // Start Simulation
                     this.simulationState = true;
                     startSimulationButton.setText("Stop Simulation");
                     if(this.algorithm == 2)
                         startSimulationButton.setDisable(true);
                     displayCurrentMode.setText("Searching...");
+                    speedSlider.setDisable(true);
                     commandScan.setDisable(true);
                     commandMove.setDisable(true);
                     commandRotate.setDisable(true);
@@ -487,7 +493,7 @@ public class MainMapController implements EventHandler<Event>
             return;
         else if (this.algorithm == 1) {
             this.timeline = new Timeline(
-                    new KeyFrame(Duration.seconds(.10),
+                    new KeyFrame(Duration.seconds((1000 / Math.round(speedSlider.getValue())) / 1000.0),
                             e -> {
                                 // RANDOM
                                 Random randomizer = new Random();
@@ -534,7 +540,7 @@ public class MainMapController implements EventHandler<Event>
             this.timeline.play();
 
             // Start new thread
-            SmartSearch searcher = new SmartSearch(this.mainBoard);
+            this.searcher = new SmartSearch(this.mainBoard, 1000 / (int) Math.round(speedSlider.getValue()));
             t = new Thread(searcher);
             t.start();
         }
@@ -562,10 +568,10 @@ public class MainMapController implements EventHandler<Event>
 class SmartSearch implements Runnable
 {
     private Board mainBoard;
-    private final int delay = 125;
+    private final int delay;
 
-    public SmartSearch(Board board)
-    { this.mainBoard = board; }
+    public SmartSearch(Board board, int delay)
+    { this.mainBoard = board; this.delay = delay; }
 
     public void run()
     {
