@@ -272,12 +272,12 @@ public class Board {
                  break;
              // Facing left -> scan [Row's First Column, Miner's Column)
              case 180:
-                 for (int col = minerCol - 1; col > 0; col--)
+                 for (int col = minerCol - 1; col >= 0; col--)
                      scannedLocations.add(map.get(minerRow).get(col));
                  break;
              // Facing up -> scan [Miner's Column, Column's First Row]
              case 90:
-                 for (int row = minerRow - 1; row > 0; row--)
+                 for (int row = minerRow - 1; row >= 0; row--)
                      scannedLocations.add(map.get(row).get(minerCol));
                  break;
              // Facing down -> scan [Miner's Column, Column's Last Row]
