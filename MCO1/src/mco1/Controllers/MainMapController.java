@@ -548,7 +548,7 @@ public class MainMapController implements EventHandler<Event>
 class SmartSearch implements Runnable
 {
     private Board mainBoard;
-    private int delay = 200;
+    private final int delay = 125;
 
     public SmartSearch(Board board)
     { this.mainBoard = board; }
@@ -589,6 +589,8 @@ class SmartSearch implements Runnable
                 }
                 // rotate to next direction
                 mainBoard.rotateMiner();
+                try{ Thread.sleep(delay); }
+                catch(InterruptedException e){ e.printStackTrace(); }
             }
             // ROTATE and MOVE to desired NEXT LOCATION from stack (if any)
             if(!stack.empty()){
@@ -617,6 +619,8 @@ class SmartSearch implements Runnable
                             if (location instanceof GoldenSquare)
                                 break;
                             mainBoard.rotateMiner();
+                            try{ Thread.sleep(delay); }
+                            catch(InterruptedException e){ e.printStackTrace(); }
                         }
                     }
                     while (!(mainBoard.getSquare(mainBoard.getMinerAgent().getRow()+1, mainBoard.getMinerAgent().getCol()+1) instanceof GoldenSquare)){
@@ -637,8 +641,14 @@ class SmartSearch implements Runnable
                         Location backtrackLocation = currentNode.getParent().getLocation();
                         int expectedAngle = mainBoard.computeAngle(backtrackLocation.getRow(), backtrackLocation.getCol());
                         // rotate to desired angle
-                        while(mainBoard.getMinerAgent().getFront() != expectedAngle)
+                        while(mainBoard.getMinerAgent().getFront() != expectedAngle) {
                             mainBoard.rotateMiner();
+                            try {
+                                Thread.sleep(delay);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
                         // move
                         mainBoard.moveMiner();
                         mainBoard.getMinerAgent().displayPosition();
@@ -649,8 +659,11 @@ class SmartSearch implements Runnable
                     }
                     // after backtracking (if needed) rotate and move to next Location in stack
                     int expectedAngle = mainBoard.computeAngle(nextRow, nextCol);
-                    while (mainBoard.getMinerAgent().getFront() != expectedAngle)
+                    while (mainBoard.getMinerAgent().getFront() != expectedAngle) {
                         mainBoard.rotateMiner();
+                        try{ Thread.sleep(delay); }
+                        catch(InterruptedException e){ e.printStackTrace(); }
+                    }
                     mainBoard.moveMiner();
                     mainBoard.getMinerAgent().displayPosition();
                 }
