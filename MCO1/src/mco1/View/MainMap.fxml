@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="mainPane" prefHeight="971.0" prefWidth="1308.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="directionLabel" layoutX="34.0" layoutY="806.0" text="East">
+      <Label fx:id="directionLabel" layoutX="34.0" layoutY="789.0" text="East">
          <font>
             <Font name="Lucida Console" size="40.0" />
          </font>
@@ -32,16 +32,11 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </CheckBox>
-      <Button fx:id="startSimulationButton" layoutX="712.0" layoutY="916.0" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="255.0" text="Start Simulation" textAlignment="CENTER" wrapText="true">
+      <Button fx:id="startSimulationButton" layoutX="712.0" layoutY="889.0" mnemonicParsing="false" onAction="#handle" prefHeight="72.0" prefWidth="255.0" text="Start Simulation" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="Lucida Console" size="23.0" />
          </font>
       </Button>
-      <CheckBox fx:id="checkSlowMode" layoutX="738.0" layoutY="887.0" mnemonicParsing="false" text="Enable Slow Mode?">
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </CheckBox>
       <ComboBox fx:id="comboAlgo" layoutX="452.0" layoutY="915.0" onAction="#handle" prefHeight="41.0" prefWidth="228.0" promptText="Choose One" />
       <Label layoutX="462.0" layoutY="890.0" text="Choose Rationality:">
          <font>
@@ -53,7 +48,7 @@
             <Font name="Lucida Console" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="counterDisplay" layoutX="1023.0" layoutY="917.0" text="0">
+      <Label fx:id="counterDisplay" layoutX="987.0" layoutY="917.0" text="0">
          <font>
             <Font name="Lucida Console" size="40.0" />
          </font>
@@ -125,5 +120,10 @@
             <Font name="Lucida Console" size="15.0" />
          </font>
       </Button>
+      <Label fx:id="positionLabel" layoutX="32.0" layoutY="834.0" text="[1,1]">
+         <font>
+            <Font name="Lucida Console" size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

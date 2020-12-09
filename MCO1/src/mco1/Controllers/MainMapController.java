@@ -45,11 +45,11 @@ public class MainMapController implements EventHandler<Event>
     @FXML CheckBox checkGold;
     @FXML CheckBox checkBeacon;
     @FXML CheckBox checkPit;
-    @FXML CheckBox checkSlowMode;
     @FXML Button startSimulationButton;
     @FXML ComboBox comboAlgo;
     @FXML Label counterDisplay;
     @FXML Label directionLabel;
+    @FXML Label positionLabel;
     @FXML Label displayRotates;
     @FXML Label displayScans;
     @FXML Label displayMoves;
@@ -303,13 +303,25 @@ public class MainMapController implements EventHandler<Event>
                     this.simulationState = false;
                     startSimulationButton.setText("Start Simulation");
                     displayCurrentMode.setText("Idle");
+                    commandScan.setDisable(false);
+                    commandMove.setDisable(false);
+                    commandRotate.setDisable(false);
+                    comboAlgo.setDisable(false);
                     stopSimulation();
                 }
                 else
                 {
                     this.simulationState = true;
                     startSimulationButton.setText("Stop Simulation");
+                    if(this.algorithm == 2)
+                        startSimulationButton.setDisable(true);
                     displayCurrentMode.setText("Searching...");
+                    commandScan.setDisable(true);
+                    commandMove.setDisable(true);
+                    commandRotate.setDisable(true);
+                    nextStepButton.setDisable(true);
+                    comboAlgo.setDisable(true);
+                    this.initState = 0;
                     doSimulation();
                 }
             }
@@ -333,8 +345,7 @@ public class MainMapController implements EventHandler<Event>
     // Update Start Simulation Button State
     private void updateButtonStates()
     {
-        if(GoldenSquare.isSet() &&
-            Pit.isSet() && Beacon.isSet())
+        if(GoldenSquare.isSet())
         {
             if(this.algorithm != 0)
                 startSimulationButton.setDisable(false);
@@ -390,6 +401,9 @@ public class MainMapController implements EventHandler<Event>
         Miner miner = mainBoard.getMinerAgent();
         int minerRow = miner.getRow();
         int minerCol = miner.getCol();
+
+        // Update Position Label
+        positionLabel.setText(String.format("[%d,%d]", minerRow + 1, minerCol + 1));
 
         // Load image based on direction
         Image image;
