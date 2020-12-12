@@ -542,6 +542,7 @@ public class MainMapController implements EventHandler<Event>
             // Start new thread
             this.searcher = new SmartSearch(this.mainBoard, 1000 / (int) Math.round(speedSlider.getValue()));
             t = new Thread(searcher);
+            t.setDaemon(true);
             t.start();
         }
     }
