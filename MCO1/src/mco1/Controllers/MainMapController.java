@@ -264,16 +264,6 @@ public class MainMapController implements EventHandler<Event>
             // Input Next State Button
             if(source.getId().equals(nextStepButton.getId()))
             {
-                switch(this.initState)
-                {
-                    case 1:
-                        if(!GoldenSquare.isSet()) return; break;
-                    case 2:
-                        if(!Pit.isSet()) return; break;
-                    case 3:
-                        if(!Beacon.isSet()) return; break;
-                }
-
                 this.initState++;
                 updateCheckers();
             }
