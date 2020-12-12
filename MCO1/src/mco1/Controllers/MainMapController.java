@@ -626,21 +626,41 @@ class SmartSearch implements Runnable
                     if (nextLocation instanceof Beacon){
                         int minerRow = mainBoard.getMinerAgent().getRow();
                         int minerCol = mainBoard.getMinerAgent().getCol();
-                        while (!(mainBoard.getSquare(mainBoard.getMinerAgent().getRow()+1, mainBoard.getMinerAgent().getCol()+1) instanceof Beacon)){
-                            mainBoard.moveMiner();
-                            mainBoard.getMinerAgent().displayPosition();
-                            try{ Thread.sleep(delay); }
-                            catch(InterruptedException e){ e.printStackTrace(); }
-                        }
-
-                        // Scan for GoldenSquare
-                        for (int counter = 1; counter <= 4; counter++) {
-                            Location location = mainBoard.farScan();
-                            if (location instanceof GoldenSquare)
-                                break;
-                            mainBoard.rotateMiner();
-                            try{ Thread.sleep(delay); }
-                            catch(InterruptedException e){ e.printStackTrace(); }
+                        while (!(((Node)stack.peek()).getLocation() instanceof GoldenSquare)) {
+                            while (!(mainBoard.getSquare(mainBoard.getMinerAgent().getRow() + 1, mainBoard.getMinerAgent().getCol() + 1) instanceof Beacon)) {
+                                mainBoard.moveMiner();
+                                mainBoard.getMinerAgent().displayPosition();
+                                try {
+                                    Thread.sleep(delay);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            stack.pop();
+                            // Scan for GoldenSquare or possible another Beacon
+                            for (int counter = 1; counter <= 4; counter++) {
+                                Location location = mainBoard.farScan();
+                                if (location instanceof Beacon) {
+                                    stack.push(new Node(location, currentNode));
+                                    try {
+                                        Thread.sleep(delay);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                    mainBoard.moveMiner();
+                                    break;
+                                }
+                                else if (location instanceof GoldenSquare){
+                                    stack.push(new Node(location, currentNode));
+                                    break;
+                                }
+                                mainBoard.rotateMiner();
+                                try {
+                                    Thread.sleep(delay);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                         }
                     }
                     while (!(mainBoard.getSquare(mainBoard.getMinerAgent().getRow()+1, mainBoard.getMinerAgent().getCol()+1) instanceof GoldenSquare)){
