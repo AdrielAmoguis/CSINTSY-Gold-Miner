@@ -1,5 +1,7 @@
 # Gold Miner
-#### CSINTSY MCO1
+### CSINTSY MCO1
+#### AMOGUIS | SUN
+#### S16 - Ms. Pau Rivera
 
 ## Language & Dependencies
 Java is the selected language for this project. Java was selected because of its object-oriented paradigm and the ease of use of its UI framework, JavaFX.
