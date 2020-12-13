@@ -264,8 +264,11 @@ public class MainMapController implements EventHandler<Event>
             // Input Next State Button
             if(source.getId().equals(nextStepButton.getId()))
             {
-                this.initState++;
-                updateCheckers();
+                if(GoldenSquare.isSet() || this.initState == 0)
+                {
+                    this.initState++;
+                    updateCheckers();
+                }
             }
 
             // Movement Buttons
@@ -574,6 +577,7 @@ class SmartSearch implements Runnable
         while (mainBoard.getStatus() == 0 && !stack.empty()){
             try{ Thread.sleep(delay); }
             catch(InterruptedException e){ e.printStackTrace(); }
+            System.out.println("Stack Size: " + stack.size());
 
             // the current parent node / location
             Node currentNode = (Node) stack.pop();
@@ -600,6 +604,7 @@ class SmartSearch implements Runnable
                 }
                 // rotate to next direction
                 mainBoard.rotateMiner();
+                System.out.println("Stack Size: " + stack.size());
                 try{ Thread.sleep(delay); }
                 catch(InterruptedException e){ e.printStackTrace(); }
             }
@@ -621,6 +626,7 @@ class SmartSearch implements Runnable
                             while (!(mainBoard.getSquare(mainBoard.getMinerAgent().getRow() + 1, mainBoard.getMinerAgent().getCol() + 1) instanceof Beacon)) {
                                 mainBoard.moveMiner();
                                 mainBoard.getMinerAgent().displayPosition();
+                                System.out.println("Stack Size: " + stack.size());
                                 try {
                                     Thread.sleep(delay);
                                 } catch (InterruptedException e) {
@@ -633,6 +639,7 @@ class SmartSearch implements Runnable
                                 Location location = mainBoard.farScan();
                                 if (location instanceof Beacon) {
                                     stack.push(new Node(location, currentNode));
+                                    System.out.println("Stack Size: " + stack.size());
                                     try {
                                         Thread.sleep(delay);
                                     } catch (InterruptedException e) {
@@ -646,6 +653,7 @@ class SmartSearch implements Runnable
                                     break;
                                 }
                                 mainBoard.rotateMiner();
+                                System.out.println("Stack Size: " + stack.size());
                                 try {
                                     Thread.sleep(delay);
                                 } catch (InterruptedException e) {
@@ -657,6 +665,7 @@ class SmartSearch implements Runnable
                     while (!(mainBoard.getSquare(mainBoard.getMinerAgent().getRow()+1, mainBoard.getMinerAgent().getCol()+1) instanceof GoldenSquare)){
                         mainBoard.moveMiner();
                         mainBoard.getMinerAgent().displayPosition();
+                        System.out.println("Stack Size: " + stack.size());
                         try{ Thread.sleep(delay); }
                         catch(InterruptedException e){ e.printStackTrace(); }
                     }
@@ -674,6 +683,7 @@ class SmartSearch implements Runnable
                         // rotate to desired angle
                         while(mainBoard.getMinerAgent().getFront() != expectedAngle) {
                             mainBoard.rotateMiner();
+                            System.out.println("Stack Size: " + stack.size());
                             try {
                                 Thread.sleep(delay);
                             } catch (InterruptedException e) {
@@ -685,6 +695,7 @@ class SmartSearch implements Runnable
                         mainBoard.getMinerAgent().displayPosition();
                         // backtracked to parent Node
                         currentNode = currentNode.getParent();
+                        System.out.println("Stack Size: " + stack.size());
                         try{ Thread.sleep(delay); }
                         catch(InterruptedException e){ e.printStackTrace(); }
                     }
@@ -692,6 +703,7 @@ class SmartSearch implements Runnable
                     int expectedAngle = mainBoard.computeAngle(nextRow, nextCol);
                     while (mainBoard.getMinerAgent().getFront() != expectedAngle) {
                         mainBoard.rotateMiner();
+                        System.out.println("Stack Size: " + stack.size());
                         try{ Thread.sleep(delay); }
                         catch(InterruptedException e){ e.printStackTrace(); }
                     }
